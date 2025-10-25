@@ -5,7 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { ProductCardSkeleton } from "@/components/ProductCardSkeleton";
 import { Footer } from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
+import { fetchProducts, fetchProductsByType, ShopifyProduct } from "@/lib/shopify";
 import { Loader2, Grid2X2, Grid3X3, LayoutGrid, SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -29,7 +29,9 @@ const Collection = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await fetchProducts(50);
+        const data = handle 
+          ? await fetchProductsByType(handle, 50)
+          : await fetchProducts(50);
         setProducts(data);
       } catch (error) {
         console.error("Failed to load products:", error);
@@ -42,10 +44,10 @@ const Collection = () => {
   }, [handle]);
 
   const collectionTitles: { [key: string]: string } = {
-    "ss25": "SS25",
-    "new": "New Arrivals",
-    "head-pieces": "Head Pieces",
-    "jewelry": "Jewelry",
+    "robes": "Robes",
+    "ensembles": "Ensembles",
+    "new": "Nouveautés",
+    "jewelry": "Accessoires",
   };
 
   const collectionTitle = collectionTitles[handle || ""] || handle?.toUpperCase() || "Collection";

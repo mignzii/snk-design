@@ -25,9 +25,9 @@ export const Header = () => {
 
   const menuItems = [
     { label: "BOUTIQUE", href: "/shop" },
-    { label: "SS25", href: "/collections/ss25" },
+    { label: "ROBES", href: "/collections/robes" },
+    { label: "ENSEMBLES", href: "/collections/ensembles" },
     { label: "NEW", href: "/collections/new" },
-    { label: "ROBES", href: "/collections/head-pieces" },
     { label: "ACCESSOIRES", href: "/collections/jewelry" },
   ];
 
@@ -72,7 +72,7 @@ export const Header = () => {
 
             {/* Center - Logo */}
             <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
-              <h1 className="text-xl font-medium tracking-[0.2em] uppercase">
+              <h1 className="text-sm md:text-xl font-medium tracking-[0.15em] md:tracking-[0.2em] uppercase">
                 SNK-DESIGN
               </h1>
             </Link>

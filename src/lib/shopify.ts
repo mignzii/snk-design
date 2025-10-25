@@ -9,6 +9,7 @@ export interface ShopifyProduct {
     title: string;
     description: string;
     handle: string;
+    productType: string;
     priceRange: {
       minVariantPrice: {
         amount: string;
@@ -86,6 +87,7 @@ const STOREFRONT_QUERY = `
           title
           description
           handle
+          productType
           priceRange {
             minVariantPrice {
               amount
@@ -130,6 +132,32 @@ const STOREFRONT_QUERY = `
 export async function fetchProducts(limit: number = 20): Promise<ShopifyProduct[]> {
   const data = await storefrontApiRequest(STOREFRONT_QUERY, { first: limit });
   return data.data.products.edges;
+}
+
+export async function fetchProductsByType(productType: string, limit: number = 50): Promise<ShopifyProduct[]> {
+  const allProducts = await fetchProducts(limit);
+  
+  // Map collection handles to product types
+  const typeMap: { [key: string]: string[] } = {
+    "robes": ["Robe", "Robes"],
+    "ensembles": ["Ensemble", "Robe / Ensemble"],
+    "jewelry": ["Accessoires", "Jewelry"],
+    "new": [] // Show all products for new collection
+  };
+  
+  const types = typeMap[productType.toLowerCase()] || [];
+  
+  // If productType is "new" or types empty, return all products
+  if (types.length === 0) {
+    return allProducts;
+  }
+  
+  // Filter by product type
+  return allProducts.filter(product => 
+    types.some(type => 
+      product.node.productType.toLowerCase().includes(type.toLowerCase())
+    )
+  );
 }
 
 const CART_CREATE_MUTATION = `

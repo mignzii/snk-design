@@ -98,51 +98,51 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="/collections/ss25" className="group relative aspect-square overflow-hidden">
+            <a href="/collections/robes" className="group relative aspect-square overflow-hidden">
               <img 
                 src={products[0]?.node.images.edges[0]?.node.url || ""}
-                alt="SS25"
+                alt="Robes"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-white text-xl tracking-[0.2em] uppercase font-light">SS25</h3>
+                <h3 className="text-white text-xl tracking-[0.2em] uppercase font-light">Robes</h3>
+              </div>
+            </a>
+            
+            <a href="/collections/ensembles" className="group relative aspect-square overflow-hidden">
+              <img 
+                src={products[1]?.node.images.edges[0]?.node.url || ""}
+                alt="Ensembles"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <h3 className="text-white text-xl tracking-[0.2em] uppercase font-light">Ensembles</h3>
               </div>
             </a>
             
             <a href="/collections/new" className="group relative aspect-square overflow-hidden">
               <img 
-                src={products[1]?.node.images.edges[0]?.node.url || ""}
-                alt="New"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-white text-xl tracking-[0.2em] uppercase font-light">New</h3>
-              </div>
-            </a>
-            
-            <a href="/collections/head-pieces" className="group relative aspect-square overflow-hidden">
-              <img 
                 src={products[2]?.node.images.edges[0]?.node.url || ""}
-                alt="Head Pieces"
+                alt="Nouveautés"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-white text-xl tracking-[0.2em] uppercase font-light">Head Pieces</h3>
+                <h3 className="text-white text-xl tracking-[0.2em] uppercase font-light">Nouveautés</h3>
               </div>
             </a>
             
             <a href="/collections/jewelry" className="group relative aspect-square overflow-hidden">
               <img 
                 src={products[3]?.node.images.edges[0]?.node.url || ""}
-                alt="Jewelry"
+                alt="Accessoires"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-white text-xl tracking-[0.2em] uppercase font-light">Jewelry</h3>
+                <h3 className="text-white text-xl tracking-[0.2em] uppercase font-light">Accessoires</h3>
               </div>
             </a>
           </div>
