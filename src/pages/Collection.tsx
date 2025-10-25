@@ -223,13 +223,14 @@ const Collection = () => {
               className="bg-transparent border-none text-sm tracking-[0.2em] uppercase cursor-pointer focus:outline-none"
             >
               <option value="best-selling">Best Selling</option>
+              <option value="newest">Nouveautés</option>
+              <option value="trending">Tendances</option>
               <option value="price-low-high">Prix: Croissant</option>
               <option value="price-high-low">Prix: Décroissant</option>
-              <option value="newest">Nouveautés</option>
             </select>
             
-            <span className="text-sm text-muted-foreground hidden md:inline">
-              {sortedProducts.length} produits
+            <span className="text-sm text-muted-foreground">
+              {sortedProducts.length} produit{sortedProducts.length > 1 ? 's' : ''}
             </span>
           </div>
 

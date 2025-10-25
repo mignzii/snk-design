@@ -6,6 +6,10 @@ import { Footer } from "@/components/Footer";
 import { FeaturesSection } from "@/components/FeaturesSection";
 import { AboutSection } from "@/components/AboutSection";
 import { NewsletterSection } from "@/components/NewsletterSection";
+import { SocialProofSection } from "@/components/SocialProofSection";
+import { LookbookSection } from "@/components/LookbookSection";
+import { PressSection } from "@/components/PressSection";
+import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { Loader2 } from "lucide-react";
 
@@ -190,6 +194,14 @@ const Index = () => {
       </section>
       
       <AboutSection />
+      
+      <RecentlyViewedSection />
+      
+      <SocialProofSection />
+      
+      <PressSection />
+      
+      <LookbookSection />
       
       <NewsletterSection />
 

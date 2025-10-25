@@ -1,6 +1,7 @@
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter, CreditCard, Shield, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -98,8 +99,34 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>© 2025 Haute Couture. Tous droits réservés. 🔒 Paiement sécurisé</p>
+        {/* Payment Methods & Features */}
+        <div className="border-t mt-8 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Shield className="h-4 w-4" />
+                <span>Paiement sécurisé SSL</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Truck className="h-4 w-4" />
+                <span>Livraison gratuite +100€</span>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <CreditCard className="h-6 w-6 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">Visa, Mastercard, PayPal, Apple Pay</span>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+            <p>© 2025 Haute Couture. Tous droits réservés.</p>
+            <div className="flex items-center gap-4">
+              <Link to="/legal/terms" className="hover:text-foreground transition-colors">Conditions Générales</Link>
+              <Link to="/legal/privacy" className="hover:text-foreground transition-colors">Confidentialité</Link>
+              <Link to="/legal/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

@@ -6,9 +6,12 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ShoppingCart, Heart, ArrowLeft, Loader2 } from "lucide-react";
+import { ShoppingCart, Heart, ArrowLeft, Loader2, Ruler, AlertCircle } from "lucide-react";
 import { storefrontApiRequest, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
+import { useRecentlyViewedStore } from "@/stores/recentlyViewedStore";
+import { WishlistButton } from "@/components/WishlistButton";
+import { SizeGuideModal } from "@/components/SizeGuideModal";
 import { toast } from "sonner";
 
 const PRODUCT_QUERY = `
@@ -64,14 +67,19 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState(0);
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const addItem = useCartStore((state) => state.addItem);
+  const addRecentlyViewed = useRecentlyViewedStore((state) => state.addItem);
 
   useEffect(() => {
     const loadProduct = async () => {
       try {
         const data = await storefrontApiRequest(PRODUCT_QUERY, { handle });
         if (data.data.productByHandle) {
-          setProduct({ node: data.data.productByHandle });
+          const productData = { node: data.data.productByHandle };
+          setProduct(productData);
+          // Add to recently viewed
+          addRecentlyViewed(productData);
         }
       } catch (error) {
         console.error("Failed to load product:", error);
@@ -83,7 +91,7 @@ const ProductDetail = () => {
     if (handle) {
       loadProduct();
     }
-  }, [handle]);
+  }, [handle, addRecentlyViewed]);
 
   if (loading) {
     return (
@@ -109,6 +117,10 @@ const ProductDetail = () => {
   const variant = node.variants.edges[selectedVariant]?.node;
   const price = parseFloat(variant?.price.amount || node.priceRange.minVariantPrice.amount);
   const currency = variant?.price.currencyCode || node.priceRange.minVariantPrice.currencyCode;
+  
+  // Check if low stock (mock - you'd get this from inventory in real scenario)
+  const availableVariantsCount = node.variants.edges.filter(v => v.node.availableForSale).length;
+  const isLowStock = availableVariantsCount > 0 && availableVariantsCount <= 2;
 
   const handleAddToCart = () => {
     if (!variant) return;
@@ -192,12 +204,24 @@ const ProductDetail = () => {
           <div className="lg:sticky lg:top-24 lg:self-start space-y-8">
             {/* Title & Price */}
             <div>
-              <h1 className="text-2xl lg:text-3xl font-light tracking-wider mb-4 uppercase">
-                {node.title}
-              </h1>
-              <p className="text-xl font-light tracking-wide">
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <h1 className="text-2xl lg:text-3xl font-light tracking-wider uppercase">
+                  {node.title}
+                </h1>
+                <WishlistButton product={product} size="icon" />
+              </div>
+              
+              <p className="text-xl font-light tracking-wide mb-3">
                 {currency} {price.toFixed(2)}
               </p>
+              
+              {/* Low Stock Warning */}
+              {isLowStock && variant?.availableForSale && (
+                <div className="flex items-center gap-2 text-sm text-orange-600 mb-4">
+                  <AlertCircle className="h-4 w-4" />
+                  <span>Plus que {availableVariantsCount} en stock</span>
+                </div>
+              )}
             </div>
 
             {/* Size/Color Selection */}
@@ -205,9 +229,22 @@ const ProductDetail = () => {
               <div className="space-y-6">
                 {node.options.map((option) => (
                   <div key={option.name}>
-                    <label className="block text-xs uppercase tracking-widest mb-3 font-light">
-                      {option.name}
-                    </label>
+                    <div className="flex items-center justify-between mb-3">
+                      <label className="text-xs uppercase tracking-widest font-light">
+                        {option.name}
+                      </label>
+                      {option.name === "Taille" && (
+                        <Button
+                          variant="link"
+                          size="sm"
+                          onClick={() => setSizeGuideOpen(true)}
+                          className="text-xs h-auto p-0 uppercase tracking-wider"
+                        >
+                          <Ruler className="h-3 w-3 mr-1" />
+                          Guide des tailles
+                        </Button>
+                      )}
+                    </div>
                     <div className="flex flex-wrap gap-2">
                       {node.variants.edges.map((v, idx) => {
                         const optionValue = v.node.selectedOptions.find(
@@ -283,6 +320,8 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+
+      <SizeGuideModal open={sizeGuideOpen} onOpenChange={setSizeGuideOpen} />
 
       <Footer />
     </div>

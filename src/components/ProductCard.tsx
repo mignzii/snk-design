@@ -5,6 +5,9 @@ import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { WishlistButton } from "@/components/WishlistButton";
+import { Eye } from "lucide-react";
+import { QuickViewModal } from "@/components/QuickViewModal";
 
 interface ProductCardProps {
   product: ShopifyProduct;
@@ -16,6 +19,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const [showQuickAdd, setShowQuickAdd] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [isHovered, setIsHovered] = useState(false);
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   
   const { node } = product;
@@ -79,18 +83,36 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   }, [isHovered, images.length]);
 
   return (
-    <div className="group block">
-      <Link to={`/product/${node.handle}`}>
-        <div 
-          className="relative overflow-hidden bg-secondary/5 aspect-[3/4] mb-3"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <img
-            src={currentImage}
-            alt={node.title}
-            className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-          />
+    <>
+      <div className="group block">
+        <Link to={`/product/${node.handle}`}>
+          <div 
+            className="relative overflow-hidden bg-secondary/5 aspect-[3/4] mb-3"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {/* Wishlist & Quick View Buttons */}
+            <div className="absolute top-2 right-2 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <WishlistButton product={product} size="icon" className="bg-background/90 backdrop-blur-sm hover:bg-background" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="bg-background/90 backdrop-blur-sm hover:bg-background"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setQuickViewOpen(true);
+                }}
+              >
+                <Eye className="h-4 w-4" />
+              </Button>
+            </div>
+
+            <img
+              src={currentImage}
+              alt={node.title}
+              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+            />
           
           {/* Image indicators */}
           {images.length > 1 && (
@@ -154,6 +176,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {currency} {formattedPrice}
         </p>
       </Link>
-    </div>
+      </div>
+
+      <QuickViewModal 
+        product={product} 
+        open={quickViewOpen} 
+        onOpenChange={setQuickViewOpen} 
+      />
+    </>
   );
 };

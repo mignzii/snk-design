@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, User, Menu, X } from "lucide-react";
+import { Search, User, Menu, X, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { CartDrawer } from "@/components/CartDrawer";
 import { SearchModal } from "@/components/SearchModal";
+import { useWishlistStore } from "@/stores/wishlistStore";
 import { cn } from "@/lib/utils";
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const wishlistCount = useWishlistStore((state) => state.items.length);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,6 +86,18 @@ export const Header = () => {
               >
                 <Search className="h-4 w-4" />
               </Button>
+              
+              <Link to="/wishlist">
+                <Button variant="ghost" size="icon" className="h-9 w-9 relative">
+                  <Heart className="h-4 w-4" />
+                  {wishlistCount > 0 && (
+                    <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
+                      {wishlistCount}
+                    </Badge>
+                  )}
+                </Button>
+              </Link>
+              
               <Button variant="ghost" size="icon" className="h-9 w-9">
                 <User className="h-4 w-4" />
               </Button>
