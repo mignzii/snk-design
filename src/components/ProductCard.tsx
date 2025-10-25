@@ -111,7 +111,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             <img
               src={currentImage}
               alt={node.title}
-              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
             />
           
           {/* Image indicators */}

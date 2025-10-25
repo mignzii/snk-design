@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ShoppingCart, Heart, ArrowLeft, Loader2, Ruler, AlertCircle } from "lucide-react";
 import { storefrontApiRequest, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -148,16 +149,37 @@ const ProductDetail = () => {
       <div className="max-w-[1600px] mx-auto px-4 py-24">
         <Breadcrumbs items={[{ label: node.title }]} />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-          {/* Images Gallery */}
-          <div className="flex gap-4">
-            {/* Thumbnails - Vertical on desktop */}
-            <div className="hidden lg:flex flex-col gap-2 w-20">
+          {/* Images Gallery with Carousel */}
+          <div className="space-y-4">
+            {/* Main Carousel */}
+            <Carousel className="w-full" opts={{ loop: true }}>
+              <CarouselContent>
+                {node.images.edges.map((image, idx) => (
+                  <CarouselItem key={idx}>
+                    <div className="aspect-[3/4] overflow-hidden bg-secondary/10 group cursor-zoom-in">
+                      <img
+                        src={image.node.url}
+                        alt={`${node.title} - Image ${idx + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
+            
+            {/* Thumbnails */}
+            <div className="grid grid-cols-5 gap-2">
               {node.images.edges.map((image, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
-                  className={`aspect-square overflow-hidden transition-all ${
-                    idx === selectedImage ? "opacity-100" : "opacity-50 hover:opacity-75"
+                  className={`aspect-square overflow-hidden transition-all border-2 ${
+                    idx === selectedImage 
+                      ? "opacity-100 border-primary" 
+                      : "opacity-60 hover:opacity-100 border-transparent"
                   }`}
                 >
                   <img
@@ -167,36 +189,6 @@ const ProductDetail = () => {
                   />
                 </button>
               ))}
-            </div>
-
-            {/* Main Image */}
-            <div className="flex-1">
-              <div className="aspect-[3/4] overflow-hidden bg-secondary/10">
-                <img
-                  src={node.images.edges[selectedImage]?.node.url}
-                  alt={node.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Thumbnails - Horizontal on mobile */}
-              <div className="lg:hidden grid grid-cols-5 gap-2 mt-4">
-                {node.images.edges.map((image, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setSelectedImage(idx)}
-                    className={`aspect-square overflow-hidden transition-all ${
-                      idx === selectedImage ? "opacity-100" : "opacity-50"
-                    }`}
-                  >
-                    <img
-                      src={image.node.url}
-                      alt={node.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
 

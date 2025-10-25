@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
+import { ProductCardSkeleton } from "@/components/ProductCardSkeleton";
 import { Footer } from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
@@ -18,6 +19,7 @@ const Collection = () => {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("best-selling");
   const [gridCols, setGridCols] = useState<2 | 3 | 4>(3);
+  const [displayedCount, setDisplayedCount] = useState(12);
   
   // Filters
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
@@ -276,17 +278,6 @@ const Collection = () => {
           {/* Products Grid */}
           <div>
             {loading ? (
-              <div className="flex items-center justify-center py-20">
-                <Loader2 className="h-8 w-8 animate-spin" />
-              </div>
-            ) : sortedProducts.length === 0 ? (
-              <div className="text-center py-20">
-                <p className="text-lg text-muted-foreground mb-4">Aucun produit trouvé</p>
-                <p className="text-sm text-muted-foreground">
-                  Essayez d'ajuster vos filtres ou revenez plus tard!
-                </p>
-              </div>
-            ) : (
               <div
                 className={`grid gap-x-4 gap-y-12 ${
                   gridCols === 2
@@ -296,10 +287,49 @@ const Collection = () => {
                     : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                 }`}
               >
-                {sortedProducts.map((product) => (
-                  <ProductCard key={product.node.id} product={product} />
+                {[...Array(12)].map((_, i) => (
+                  <ProductCardSkeleton key={i} />
                 ))}
               </div>
+            ) : sortedProducts.length === 0 ? (
+              <div className="text-center py-20">
+                <p className="text-lg text-muted-foreground mb-4">Aucun produit trouvé</p>
+                <p className="text-sm text-muted-foreground">
+                  Essayez d'ajuster vos filtres ou revenez plus tard!
+                </p>
+              </div>
+            ) : (
+              <>
+                <div
+                  className={`grid gap-x-4 gap-y-12 ${
+                    gridCols === 2
+                      ? "grid-cols-2"
+                      : gridCols === 3
+                      ? "grid-cols-2 md:grid-cols-3"
+                      : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                  }`}
+                >
+                  {sortedProducts.slice(0, displayedCount).map((product, index) => (
+                    <div key={product.node.id} className="animate-fade-up" style={{ animationDelay: `${(index % 12) * 50}ms` }}>
+                      <ProductCard product={product} />
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Load More Button */}
+                {displayedCount < sortedProducts.length && (
+                  <div className="text-center mt-16">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      onClick={() => setDisplayedCount(prev => prev + 12)}
+                      className="px-12 py-6 uppercase tracking-widest text-xs"
+                    >
+                      Voir Plus ({sortedProducts.length - displayedCount} restants)
+                    </Button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
