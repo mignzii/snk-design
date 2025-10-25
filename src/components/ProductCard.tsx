@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
@@ -15,6 +15,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [showQuickAdd, setShowQuickAdd] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
+  const [isHovered, setIsHovered] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   
   const { node } = product;
   const price = parseFloat(node.priceRange.minVariantPrice.amount);
@@ -54,19 +56,35 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     setShowQuickAdd(false);
   };
 
-  const handleImageCycle = () => {
-    if (images.length > 1) {
-      setImageIndex((prev) => (prev + 1) % images.length);
+  useEffect(() => {
+    if (isHovered && images.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setImageIndex((prev) => (prev + 1) % images.length);
+      }, 800);
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      if (!isHovered) {
+        setImageIndex(0);
+      }
     }
-  };
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isHovered, images.length]);
 
   return (
     <div className="group block">
       <Link to={`/product/${node.handle}`}>
         <div 
           className="relative overflow-hidden bg-secondary/5 aspect-[3/4] mb-3"
-          onMouseEnter={handleImageCycle}
-          onMouseLeave={() => setImageIndex(0)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <img
             src={currentImage}
