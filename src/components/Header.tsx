@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { Search, User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CartDrawer } from "@/components/CartDrawer";
+import { SearchModal } from "@/components/SearchModal";
 import { cn } from "@/lib/utils";
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +75,12 @@ export const Header = () => {
 
             {/* Right - Icons */}
             <div className="flex items-center gap-1 flex-1 justify-end">
-              <Button variant="ghost" size="icon" className="h-9 w-9">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="h-9 w-9"
+                onClick={() => setSearchOpen(true)}
+              >
                 <Search className="h-4 w-4" />
               </Button>
               <Button variant="ghost" size="icon" className="h-9 w-9">
@@ -82,6 +89,8 @@ export const Header = () => {
               <CartDrawer />
             </div>
           </div>
+          
+          <SearchModal open={searchOpen} onOpenChange={setSearchOpen} />
 
           {/* Mobile menu */}
           {isMobileMenuOpen && (

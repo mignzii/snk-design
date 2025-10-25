@@ -3,6 +3,9 @@ import { Header } from "@/components/Header";
 import { HeroSlider } from "@/components/HeroSlider";
 import { ProductCard } from "@/components/ProductCard";
 import { Footer } from "@/components/Footer";
+import { FeaturesSection } from "@/components/FeaturesSection";
+import { AboutSection } from "@/components/AboutSection";
+import { NewsletterSection } from "@/components/NewsletterSection";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { Loader2 } from "lucide-react";
 
@@ -30,6 +33,8 @@ const Index = () => {
       <Header />
       
       <HeroSlider />
+      
+      <FeaturesSection />
 
       {/* Best Sellers Section */}
       <section className="container mx-auto px-4 py-20">
@@ -183,6 +188,10 @@ const Index = () => {
           </div>
         )}
       </section>
+      
+      <AboutSection />
+      
+      <NewsletterSection />
 
       <Footer />
     </div>
