@@ -100,7 +100,7 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <a href="/collections/robes" className="group relative aspect-square overflow-hidden">
               <img 
-                src={products[0]?.node.images.edges[0]?.node.url || ""}
+                src={products[4]?.node.images.edges[0]?.node.url || ""}
                 alt="Robes"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -112,7 +112,7 @@ const Index = () => {
             
             <a href="/collections/ensembles" className="group relative aspect-square overflow-hidden">
               <img 
-                src={products[1]?.node.images.edges[0]?.node.url || ""}
+                src={products[5]?.node.images.edges[0]?.node.url || ""}
                 alt="Ensembles"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -124,7 +124,7 @@ const Index = () => {
             
             <a href="/collections/new" className="group relative aspect-square overflow-hidden">
               <img 
-                src={products[2]?.node.images.edges[0]?.node.url || ""}
+                src={products[6]?.node.images.edges[0]?.node.url || ""}
                 alt="Nouveautés"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -136,7 +136,7 @@ const Index = () => {
             
             <a href="/collections/jewelry" className="group relative aspect-square overflow-hidden">
               <img 
-                src={products[3]?.node.images.edges[0]?.node.url || ""}
+                src={products[7]?.node.images.edges[0]?.node.url || ""}
                 alt="Accessoires"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
