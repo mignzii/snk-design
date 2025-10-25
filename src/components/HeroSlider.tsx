@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
@@ -9,27 +7,23 @@ import hero4 from "@/assets/hero-4.jpg";
 const slides = [
   {
     image: hero1,
-    title: "Collection Printemps 2025",
-    subtitle: "Élégance Intemporelle",
-    cta: "Découvrir",
+    title: "ULTIMATE SALE",
+    subtitle: "UP TO 70% OFF",
   },
   {
     image: hero2,
-    title: "Soirées d'Exception",
-    subtitle: "Raffinement & Sophistication",
-    cta: "Explorer",
+    title: "NEW COLLECTION",
+    subtitle: "SPRING 2025",
   },
   {
     image: hero3,
-    title: "Garde-Robe Essentielle",
-    subtitle: "Luxe au Quotidien",
-    cta: "Voir Plus",
+    title: "EXCLUSIVE PIECES",
+    subtitle: "LIMITED EDITION",
   },
   {
     image: hero4,
-    title: "Haute Couture",
-    subtitle: "L'Art de la Perfection",
-    cta: "Découvrir",
+    title: "HAUTE COUTURE",
+    subtitle: "MADE TO ORDER",
   },
 ];
 
@@ -76,49 +70,26 @@ export const HeroSlider = () => {
 
       {/* Content */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center text-white z-10 px-4 animate-fade-in">
-          <p className="text-sm font-light tracking-[0.3em] uppercase mb-4">
-            {slides[currentSlide].subtitle}
-          </p>
-          <h2 className="text-5xl md:text-7xl font-serif font-bold mb-8">
+        <div className="text-center text-white z-10 px-4">
+          <h2 className="text-6xl md:text-8xl font-normal tracking-[0.15em] uppercase mb-3 animate-fade-in">
             {slides[currentSlide].title}
           </h2>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-white text-white hover:bg-white hover:text-primary transition-all duration-300"
-          >
-            {slides[currentSlide].cta}
-          </Button>
+          <p className="text-base md:text-lg font-light tracking-[0.3em] uppercase animate-fade-in">
+            {slides[currentSlide].subtitle}
+          </p>
         </div>
       </div>
 
-      {/* Navigation arrows */}
-      <button
-        onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-6 h-6 text-white" />
-      </button>
-      <button
-        onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-6 h-6 text-white" />
-      </button>
-
-      {/* Dots */}
+      {/* Dots - minimalist style */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
+            className={`h-1.5 rounded-full transition-all ${
               index === currentSlide
                 ? "bg-white w-8"
-                : "bg-white/50 hover:bg-white/75"
+                : "bg-white/40 w-1.5 hover:bg-white/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

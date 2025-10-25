@@ -8,41 +8,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Luxury color palette */
+    /* Minimalist color palette - Wannifuga style */
     --background: 0 0% 100%;
-    --foreground: 0 0% 17%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 17%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 17%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 0 0% 0%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 30 20% 90%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
 
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 43 74% 49%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 0 0% 0%;
+    --ring: 0 0% 10%;
 
-    --radius: 0.25rem;
+    --radius: 0rem;
     
     /* Custom luxury colors */
-    --gold: 43 74% 49%;
+    --gold: 45 100% 51%;
     --rose-beige: 15 25% 85%;
-    --charcoal: 0 0% 17%;
+    --charcoal: 0 0% 20%;
     
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 100% / 0.95), hsl(15 25% 85% / 0.90));
@@ -56,53 +56,44 @@ All colors MUST be HSL.
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --radius: 0.25rem;
-
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 0 0% 5%;
+    --background: 0 0% 10%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 8%;
+    --card: 0 0% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 8%;
+    --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 10%;
 
     --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary-foreground: 0 0% 98%;
 
     --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 43 74% 49%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 0 0% 98%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 0 0% 100%;
+    --ring: 0 0% 83.9%;
   }
 }
 

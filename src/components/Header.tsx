@@ -19,77 +19,87 @@ export const Header = () => {
   }, []);
 
   const menuItems = [
-    { label: "Collections", href: "/" },
-    { label: "Nouveautés", href: "/" },
-    { label: "Robes", href: "/" },
-    { label: "Accessoires", href: "/" },
-    { label: "À Propos", href: "/" },
+    { label: "SHOP", href: "/" },
+    { label: "NEW", href: "/" },
+    { label: "ROBES", href: "/" },
+    { label: "ACCESSOIRES", href: "/" },
   ];
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
-      )}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </Button>
-
-          <Link to="/" className="flex items-center">
-            <h1 className="text-2xl font-serif font-bold tracking-tight">
-              HAUTE COUTURE
-            </h1>
-          </Link>
-
-          <nav className="hidden lg:flex items-center gap-8">
-            {menuItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.href}
-                className="text-sm font-medium transition-colors hover:text-accent"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon">
-              <Search className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
-            <CartDrawer />
-          </div>
-        </div>
-
-        {isMobileMenuOpen && (
-          <nav className="lg:hidden py-4 border-t animate-fade-in">
-            {menuItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.href}
-                className="block py-3 text-sm font-medium transition-colors hover:text-accent"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        )}
+    <>
+      {/* Top announcement bar */}
+      <div className="bg-foreground text-background py-2 text-center text-xs uppercase tracking-wider">
+        Livraison standard 7-15 jours ouvrables
       </div>
-    </header>
+      
+      <header
+        className={cn(
+          "sticky top-0 z-50 transition-all duration-300 bg-background border-b",
+          isScrolled && "shadow-sm"
+        )}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Left - Menu button on mobile, navigation on desktop */}
+            <div className="flex items-center flex-1">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+
+              <nav className="hidden lg:flex items-center gap-6">
+                {menuItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="text-xs font-medium tracking-wider transition-colors hover:text-muted-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Center - Logo */}
+            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
+              <h1 className="text-xl font-medium tracking-[0.2em] uppercase">
+                HAUTE COUTURE
+              </h1>
+            </Link>
+
+            {/* Right - Icons */}
+            <div className="flex items-center gap-1 flex-1 justify-end">
+              <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Search className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="icon" className="h-9 w-9">
+                <User className="h-4 w-4" />
+              </Button>
+              <CartDrawer />
+            </div>
+          </div>
+
+          {/* Mobile menu */}
+          {isMobileMenuOpen && (
+            <nav className="lg:hidden py-4 border-t animate-fade-in">
+              {menuItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="block py-3 text-xs font-medium tracking-wider transition-colors hover:text-muted-foreground"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          )}
+        </div>
+      </header>
+    </>
   );
 };

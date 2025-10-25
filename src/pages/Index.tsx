@@ -31,85 +31,13 @@ const Index = () => {
       
       <HeroSlider />
 
-      {/* Promotional Banner */}
-      <div className="bg-primary text-primary-foreground py-3 overflow-hidden">
-        <div className="animate-slide-in whitespace-nowrap text-center text-sm">
-          🚚 Livraison gratuite dès 100€ • ↩️ Retours sous 30 jours • 🔒 Paiement sécurisé
-        </div>
-      </div>
-
-      {/* About Section */}
+      {/* Products Section - Best Sellers */}
       <section className="container mx-auto px-4 py-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl font-serif font-bold mb-6">
-              L'Art de l'Élégance Française
-            </h2>
-            <p className="text-muted-foreground mb-4 text-lg">
-              Depuis notre atelier parisien, nous créons des robes qui célèbrent la féminité 
-              et l'élégance intemporelle. Chaque pièce est pensée pour sublimer votre silhouette 
-              et révéler votre personnalité unique.
-            </p>
-            <p className="text-muted-foreground text-lg">
-              Notre savoir-faire artisanal et notre passion pour les détails font de chaque 
-              création une œuvre d'art portée avec fierté par des femmes du monde entier.
-            </p>
-          </div>
-          <div className="relative h-[500px] rounded-lg overflow-hidden">
-            <img 
-              src="/src/assets/hero-2.jpg" 
-              alt="Notre atelier" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="bg-secondary/20 py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">🚚</span>
-              </div>
-              <h3 className="font-serif text-xl font-semibold mb-2">Livraison Express</h3>
-              <p className="text-muted-foreground">
-                Livraison gratuite dès 100€ et expédition sous 24h
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">↩️</span>
-              </div>
-              <h3 className="font-serif text-xl font-semibold mb-2">Retours Gratuits</h3>
-              <p className="text-muted-foreground">
-                30 jours pour changer d'avis, retours sans frais
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">✨</span>
-              </div>
-              <h3 className="font-serif text-xl font-semibold mb-2">Qualité Premium</h3>
-              <p className="text-muted-foreground">
-                Matières nobles et finitions soignées pour une durabilité exceptionnelle
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Products Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-serif font-bold mb-4">
-            Notre Collection
+        <div className="text-center mb-16">
+          <h2 className="text-2xl font-normal tracking-wider uppercase mb-2">
+            Best Sellers
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Découvrez notre sélection exclusive de robes et vêtements haute couture,
-            conçus pour sublimer votre élégance naturelle
-          </p>
+          <div className="w-16 h-px bg-foreground mx-auto mt-4"></div>
         </div>
 
         {loading ? (
@@ -126,41 +54,12 @@ const Index = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-12">
             {products.map((product) => (
               <ProductCard key={product.node.id} product={product} />
             ))}
           </div>
         )}
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-4xl font-serif font-bold mb-4">
-              Restez Informée
-            </h2>
-            <p className="text-muted-foreground mb-8 text-lg">
-              Inscrivez-vous à notre newsletter et recevez en exclusivité nos nouvelles collections, 
-              conseils de style et offres privilégiées.
-            </p>
-            <div className="flex gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Votre adresse email" 
-                className="flex-1 px-4 py-3 rounded-lg border bg-background"
-              />
-              <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-                S'inscrire
-              </button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-4">
-              En vous inscrivant, vous acceptez de recevoir nos communications. 
-              Désinscription possible à tout moment.
-            </p>
-          </div>
-        </div>
       </section>
 
       <Footer />
