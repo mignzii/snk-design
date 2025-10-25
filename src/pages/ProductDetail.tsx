@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ShoppingCart, Heart, ArrowLeft, Loader2 } from "lucide-react";
 import { storefrontApiRequest, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -131,34 +132,18 @@ const ProductDetail = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <div className="container mx-auto px-4 py-24">
-        <Button
-          variant="ghost"
-          onClick={() => navigate("/")}
-          className="mb-6"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Retour
-        </Button>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Images */}
-          <div className="space-y-4">
-            <div className="aspect-[3/4] rounded-sm overflow-hidden bg-secondary/20">
-              <img
-                src={node.images.edges[selectedImage]?.node.url}
-                alt={node.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            
-            <div className="grid grid-cols-4 gap-4">
+      <div className="max-w-[1600px] mx-auto px-4 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+          {/* Images Gallery */}
+          <div className="flex gap-4">
+            {/* Thumbnails - Vertical on desktop */}
+            <div className="hidden lg:flex flex-col gap-2 w-20">
               {node.images.edges.map((image, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
-                  className={`aspect-square rounded-sm overflow-hidden border-2 transition-all ${
-                    idx === selectedImage ? "border-primary" : "border-transparent"
+                  className={`aspect-square overflow-hidden transition-all ${
+                    idx === selectedImage ? "opacity-100" : "opacity-50 hover:opacity-75"
                   }`}
                 >
                   <img
@@ -169,31 +154,58 @@ const ProductDetail = () => {
                 </button>
               ))}
             </div>
+
+            {/* Main Image */}
+            <div className="flex-1">
+              <div className="aspect-[3/4] overflow-hidden bg-secondary/10">
+                <img
+                  src={node.images.edges[selectedImage]?.node.url}
+                  alt={node.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Thumbnails - Horizontal on mobile */}
+              <div className="lg:hidden grid grid-cols-5 gap-2 mt-4">
+                {node.images.edges.map((image, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedImage(idx)}
+                    className={`aspect-square overflow-hidden transition-all ${
+                      idx === selectedImage ? "opacity-100" : "opacity-50"
+                    }`}
+                  >
+                    <img
+                      src={image.node.url}
+                      alt={node.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
+          <div className="lg:sticky lg:top-24 lg:self-start space-y-8">
+            {/* Title & Price */}
             <div>
-              <h1 className="text-4xl font-serif font-bold mb-4">{node.title}</h1>
-              <p className="text-3xl font-bold mb-6">
+              <h1 className="text-2xl lg:text-3xl font-light tracking-wider mb-4 uppercase">
+                {node.title}
+              </h1>
+              <p className="text-xl font-light tracking-wide">
                 {currency} {price.toFixed(2)}
               </p>
-              
-              {!variant?.availableForSale && (
-                <Badge className="mb-4">ÉPUISÉ</Badge>
-              )}
             </div>
 
-            <div className="prose prose-sm">
-              <p>{node.description}</p>
-            </div>
-
-            {/* Variants */}
+            {/* Size/Color Selection */}
             {node.options.length > 0 && (
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {node.options.map((option) => (
                   <div key={option.name}>
-                    <label className="block font-semibold mb-2">{option.name}</label>
+                    <label className="block text-xs uppercase tracking-widest mb-3 font-light">
+                      {option.name}
+                    </label>
                     <div className="flex flex-wrap gap-2">
                       {node.variants.edges.map((v, idx) => {
                         const optionValue = v.node.selectedOptions.find(
@@ -201,14 +213,20 @@ const ProductDetail = () => {
                         )?.value;
                         
                         return (
-                          <Button
+                          <button
                             key={idx}
-                            variant={selectedVariant === idx ? "default" : "outline"}
                             onClick={() => setSelectedVariant(idx)}
                             disabled={!v.node.availableForSale}
+                            className={`px-6 py-2 text-sm uppercase tracking-wider transition-all border ${
+                              selectedVariant === idx
+                                ? "bg-primary text-primary-foreground border-primary"
+                                : v.node.availableForSale
+                                ? "border-border hover:border-primary"
+                                : "border-border opacity-30 cursor-not-allowed"
+                            }`}
                           >
                             {optionValue}
-                          </Button>
+                          </button>
                         );
                       })}
                     </div>
@@ -217,33 +235,49 @@ const ProductDetail = () => {
               </div>
             )}
 
-            <div className="flex gap-4">
-              <Button
-                size="lg"
-                className="flex-1"
-                onClick={handleAddToCart}
-                disabled={!variant?.availableForSale}
-              >
-                <ShoppingCart className="w-5 h-5 mr-2" />
-                Ajouter au panier
-              </Button>
-              
-              <Button size="lg" variant="outline">
-                <Heart className="w-5 h-5" />
-              </Button>
-            </div>
+            {/* Add to Cart */}
+            <Button
+              size="lg"
+              className="w-full py-6 text-sm uppercase tracking-widest font-light"
+              onClick={handleAddToCart}
+              disabled={!variant?.availableForSale}
+            >
+              {!variant?.availableForSale ? "ÉPUISÉ" : "AJOUTER AU PANIER"}
+            </Button>
 
-            <div className="space-y-2 text-sm text-muted-foreground border-t pt-6">
-              <p className="flex items-center gap-2">
-                🚚 Livraison gratuite dès 100€
-              </p>
-              <p className="flex items-center gap-2">
-                ↩️ Retours gratuits sous 30 jours
-              </p>
-              <p className="flex items-center gap-2">
-                🔒 Paiement 100% sécurisé
-              </p>
-            </div>
+            {/* Accordions */}
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="description" className="border-t">
+                <AccordionTrigger className="text-xs uppercase tracking-widest font-light hover:no-underline">
+                  Description
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                  {node.description}
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="delivery" className="border-t">
+                <AccordionTrigger className="text-xs uppercase tracking-widest font-light hover:no-underline">
+                  Livraison & Retours
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed space-y-2">
+                  <p>Livraison gratuite dès 100€ d'achat</p>
+                  <p>Retours gratuits sous 30 jours</p>
+                  <p>Livraison en 3-5 jours ouvrés</p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="care" className="border-t border-b">
+                <AccordionTrigger className="text-xs uppercase tracking-widest font-light hover:no-underline">
+                  Entretien
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed space-y-2">
+                  <p>Lavage à la main recommandé</p>
+                  <p>Ne pas utiliser d'eau de javel</p>
+                  <p>Sécher à plat</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </div>
