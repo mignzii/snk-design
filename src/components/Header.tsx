@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Search, User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CartDrawer } from "@/components/CartDrawer";
 import { cn } from "@/lib/utils";
 
 export const Header = () => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -48,22 +49,25 @@ export const Header = () => {
           </Button>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <button 
+            onClick={() => navigate("/")} 
+            className="flex items-center cursor-pointer"
+          >
             <h1 className="text-2xl font-serif font-bold tracking-tight">
               HAUTE COUTURE
             </h1>
-          </Link>
+          </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {menuItems.map((item) => (
-              <Link
+              <button
                 key={item.label}
-                to={item.href}
+                onClick={() => navigate(item.href)}
                 className="text-sm font-medium transition-colors hover:text-accent"
               >
                 {item.label}
-              </Link>
+              </button>
             ))}
           </nav>
 
@@ -83,14 +87,16 @@ export const Header = () => {
         {isMobileMenuOpen && (
           <nav className="lg:hidden py-4 border-t animate-fade-in">
             {menuItems.map((item) => (
-              <Link
+              <button
                 key={item.label}
-                to={item.href}
-                className="block py-3 text-sm font-medium transition-colors hover:text-accent"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  navigate(item.href);
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block py-3 text-sm font-medium transition-colors hover:text-accent w-full text-left"
               >
                 {item.label}
-              </Link>
+              </button>
             ))}
           </nav>
         )}

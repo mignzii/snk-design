@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, ShoppingCart } from "lucide-react";
@@ -12,6 +12,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const navigate = useNavigate();
   const addItem = useCartStore((state) => state.addItem);
   const [imageIndex, setImageIndex] = useState(0);
   
@@ -50,8 +51,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     });
   };
 
+  const handleCardClick = () => {
+    navigate(`/product/${node.handle}`);
+  };
+
   return (
-    <Link to={`/product/${node.handle}`} className="group block">
+    <div onClick={handleCardClick} className="group block cursor-pointer">
       <div className="relative overflow-hidden rounded-sm bg-secondary/20 aspect-[3/4] mb-4">
         <img
           src={currentImage}
@@ -104,6 +109,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {currency} {formattedPrice}
         </p>
       </div>
-    </Link>
+    </div>
   );
 };
