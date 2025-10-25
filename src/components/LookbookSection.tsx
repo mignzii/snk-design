@@ -1,28 +1,31 @@
 import { Instagram } from "lucide-react";
+import lookbook1 from "@/assets/lookbook-1.jpg";
+import lookbook2 from "@/assets/lookbook-2.jpg";
+import lookbook3 from "@/assets/lookbook-3.jpg";
 
 const instagramPosts = [
   {
-    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&q=80&w=400",
+    image: lookbook1,
     likes: "2.3K",
   },
   {
-    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=400",
+    image: lookbook2,
     likes: "1.8K",
   },
   {
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&q=80&w=400",
+    image: lookbook3,
     likes: "3.1K",
   },
   {
-    image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&q=80&w=400",
+    image: lookbook1,
     likes: "2.7K",
   },
   {
-    image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&q=80&w=400",
+    image: lookbook2,
     likes: "1.9K",
   },
   {
-    image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&q=80&w=400",
+    image: lookbook3,
     likes: "2.5K",
   },
 ];
@@ -56,6 +59,8 @@ export const LookbookSection = () => {
                 src={post.image}
                 alt={`Instagram post ${index + 1}`}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <div className="text-white flex items-center gap-2">

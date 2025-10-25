@@ -1,29 +1,23 @@
 import { useState, useEffect } from "react";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import hero4 from "@/assets/hero-4.jpg";
+import lookbook1 from "@/assets/lookbook-1.jpg";
+import lookbook2 from "@/assets/lookbook-2.jpg";
+import lookbook3 from "@/assets/lookbook-3.jpg";
 
 const slides = [
   {
-    image: hero1,
-    title: "ULTIMATE SALE",
-    subtitle: "UP TO 70% OFF",
+    image: lookbook1,
+    title: "NOUVELLE COLLECTION",
+    subtitle: "PRINTEMPS 2025",
   },
   {
-    image: hero2,
-    title: "NEW COLLECTION",
-    subtitle: "SPRING 2025",
+    image: lookbook2,
+    title: "PIÈCES EXCLUSIVES",
+    subtitle: "ÉDITION LIMITÉE",
   },
   {
-    image: hero3,
-    title: "EXCLUSIVE PIECES",
-    subtitle: "LIMITED EDITION",
-  },
-  {
-    image: hero4,
+    image: lookbook3,
     title: "HAUTE COUTURE",
-    subtitle: "MADE TO ORDER",
+    subtitle: "SUR MESURE",
   },
 ];
 
@@ -63,6 +57,9 @@ export const HeroSlider = () => {
             src={slide.image}
             alt={slide.title}
             className="w-full h-full object-cover"
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "low"}
+            decoding={index === 0 ? "sync" : "async"}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         </div>
