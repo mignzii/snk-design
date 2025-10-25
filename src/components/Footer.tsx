@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,24 +32,24 @@ export const Footer = () => {
             <h4 className="font-semibold mb-4">Boutique</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link to="/" className="hover:text-accent transition-colors">
+                <button className="hover:text-accent transition-colors text-left">
                   Nouveautés
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/" className="hover:text-accent transition-colors">
+                <button className="hover:text-accent transition-colors text-left">
                   Robes
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/" className="hover:text-accent transition-colors">
+                <button className="hover:text-accent transition-colors text-left">
                   Accessoires
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/" className="hover:text-accent transition-colors">
+                <button className="hover:text-accent transition-colors text-left">
                   Soldes
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
@@ -60,24 +59,24 @@ export const Footer = () => {
             <h4 className="font-semibold mb-4">Service Client</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link to="/" className="hover:text-accent transition-colors">
+                <button className="hover:text-accent transition-colors text-left">
                   Contact
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/" className="hover:text-accent transition-colors">
+                <button className="hover:text-accent transition-colors text-left">
                   Livraison & Retours
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/" className="hover:text-accent transition-colors">
+                <button className="hover:text-accent transition-colors text-left">
                   Guide des Tailles
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/" className="hover:text-accent transition-colors">
+                <button className="hover:text-accent transition-colors text-left">
                   FAQ
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
