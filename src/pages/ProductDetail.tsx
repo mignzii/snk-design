@@ -6,7 +6,6 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ShoppingCart, Heart, ArrowLeft, Loader2, Ruler, AlertCircle } from "lucide-react";
 import { storefrontApiRequest, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -149,26 +148,16 @@ const ProductDetail = () => {
       <div className="max-w-[1600px] mx-auto px-4 py-24">
         <Breadcrumbs items={[{ label: node.title }]} />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-          {/* Images Gallery with Carousel */}
+          {/* Images Gallery */}
           <div className="space-y-4">
-            {/* Main Carousel */}
-            <Carousel className="w-full" opts={{ loop: true }}>
-              <CarouselContent>
-                {node.images.edges.map((image, idx) => (
-                  <CarouselItem key={idx}>
-                    <div className="aspect-[3/4] overflow-hidden bg-secondary/10 group cursor-zoom-in">
-                      <img
-                        src={image.node.url}
-                        alt={`${node.title} - Image ${idx + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-4" />
-              <CarouselNext className="right-4" />
-            </Carousel>
+            {/* Main Image */}
+            <div className="aspect-[3/4] overflow-hidden bg-secondary/10 group cursor-zoom-in">
+              <img
+                src={node.images.edges[selectedImage]?.node.url}
+                alt={`${node.title} - Image ${selectedImage + 1}`}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+            </div>
             
             {/* Thumbnails */}
             <div className="grid grid-cols-5 gap-2">
