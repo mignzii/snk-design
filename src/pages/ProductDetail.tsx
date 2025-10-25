@@ -12,6 +12,9 @@ import { useCartStore } from "@/stores/cartStore";
 import { useRecentlyViewedStore } from "@/stores/recentlyViewedStore";
 import { WishlistButton } from "@/components/WishlistButton";
 import { SizeGuideModal } from "@/components/SizeGuideModal";
+import { RelatedProductsSection } from "@/components/RelatedProductsSection";
+import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
+import { ProductBenefitsSection } from "@/components/ProductBenefitsSection";
 import { toast } from "sonner";
 
 const PRODUCT_QUERY = `
@@ -303,6 +306,15 @@ const ProductDetail = () => {
       </div>
 
       <SizeGuideModal open={sizeGuideOpen} onOpenChange={setSizeGuideOpen} />
+
+      {/* Benefits Section */}
+      <ProductBenefitsSection />
+
+      {/* Related Products Section */}
+      {product && <RelatedProductsSection currentProductId={node.id} />}
+
+      {/* Recently Viewed Section */}
+      <RecentlyViewedSection />
 
       <Footer />
     </div>
