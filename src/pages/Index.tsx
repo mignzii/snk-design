@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { HeroSlider } from "@/components/HeroSlider";
 import { ProductCard } from "@/components/ProductCard";
@@ -11,7 +12,8 @@ import { LookbookSection } from "@/components/LookbookSection";
 import { PressSection } from "@/components/PressSection";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -63,11 +65,25 @@ const Index = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-12">
-            {products.map((product) => (
-              <ProductCard key={product.node.id} product={product} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-12 mb-12">
+              {products.slice(0, 4).map((product) => (
+                <ProductCard key={product.node.id} product={product} />
+              ))}
+            </div>
+            
+            <div className="text-center">
+              <Link to="/shop">
+                <Button 
+                  variant="outline" 
+                  className="group uppercase tracking-[0.2em] text-xs px-8 py-6 hover:bg-foreground hover:text-background transition-all"
+                >
+                  Voir Plus
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            </div>
+          </>
         )}
       </section>
 
