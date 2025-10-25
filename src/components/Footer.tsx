@@ -10,7 +10,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="font-serif font-bold text-lg mb-4">Haute Couture</h3>
+            <h3 className="font-serif font-bold text-lg mb-4">SNK-Design</h3>
             <p className="text-sm text-muted-foreground mb-4">
               Découvrez notre collection exclusive de robes et vêtements haut de gamme
               pour la femme moderne et élégante.
@@ -120,7 +120,7 @@ export const Footer = () => {
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-            <p>© 2025 Haute Couture. Tous droits réservés.</p>
+            <p>© 2025 SNK-Design. Tous droits réservés.</p>
             <div className="flex items-center gap-4">
               <Link to="/legal/terms" className="hover:text-foreground transition-colors">Conditions Générales</Link>
               <Link to="/legal/privacy" className="hover:text-foreground transition-colors">Confidentialité</Link>

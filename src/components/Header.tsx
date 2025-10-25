@@ -73,7 +73,7 @@ export const Header = () => {
             {/* Center - Logo */}
             <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
               <h1 className="text-xl font-medium tracking-[0.2em] uppercase">
-                HAUTE COUTURE
+                SNK-DESIGN
               </h1>
             </Link>
 
