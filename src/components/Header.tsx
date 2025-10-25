@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Search, User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CartDrawer } from "@/components/CartDrawer";
 import { cn } from "@/lib/utils";
 
 export const Header = () => {
-  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -38,7 +37,6 @@ export const Header = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Mobile menu button */}
           <Button
             variant="ghost"
             size="icon"
@@ -48,30 +46,24 @@ export const Header = () => {
             {isMobileMenuOpen ? <X /> : <Menu />}
           </Button>
 
-          {/* Logo */}
-          <button 
-            onClick={() => navigate("/")} 
-            className="flex items-center cursor-pointer"
-          >
+          <Link to="/" className="flex items-center">
             <h1 className="text-2xl font-serif font-bold tracking-tight">
               HAUTE COUTURE
             </h1>
-          </button>
+          </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {menuItems.map((item) => (
-              <button
+              <Link
                 key={item.label}
-                onClick={() => navigate(item.href)}
+                to={item.href}
                 className="text-sm font-medium transition-colors hover:text-accent"
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </nav>
 
-          {/* Right icons */}
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon">
               <Search className="h-5 w-5" />
@@ -83,20 +75,17 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {isMobileMenuOpen && (
           <nav className="lg:hidden py-4 border-t animate-fade-in">
             {menuItems.map((item) => (
-              <button
+              <Link
                 key={item.label}
-                onClick={() => {
-                  navigate(item.href);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="block py-3 text-sm font-medium transition-colors hover:text-accent w-full text-left"
+                to={item.href}
+                className="block py-3 text-sm font-medium transition-colors hover:text-accent"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </nav>
         )}

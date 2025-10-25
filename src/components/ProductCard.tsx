@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, ShoppingCart } from "lucide-react";
@@ -12,7 +12,6 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const navigate = useNavigate();
   const addItem = useCartStore((state) => state.addItem);
   const [imageIndex, setImageIndex] = useState(0);
   
@@ -51,12 +50,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     });
   };
 
-  const handleCardClick = () => {
-    navigate(`/product/${node.handle}`);
-  };
-
   return (
-    <div onClick={handleCardClick} className="group block cursor-pointer">
+    <Link to={`/product/${node.handle}`} className="group block">
       <div className="relative overflow-hidden rounded-sm bg-secondary/20 aspect-[3/4] mb-4">
         <img
           src={currentImage}
@@ -72,7 +67,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </Badge>
         )}
         
-        {/* Hover overlay with actions */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
           <Button
             size="icon"
@@ -109,6 +103,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {currency} {formattedPrice}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
