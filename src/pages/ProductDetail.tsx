@@ -137,7 +137,7 @@ const ProductDetail = () => {
     addItem(cartItem);
     toast.success("Ajouté au panier", {
       description: node.title,
-      position: "top-center",
+      position: "top-right",
     });
   };
 

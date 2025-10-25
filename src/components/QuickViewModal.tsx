@@ -48,7 +48,7 @@ export const QuickViewModal = ({ product, open, onOpenChange }: QuickViewModalPr
     addItem(cartItem);
     toast.success("Ajouté au panier", {
       description: node.title,
-      position: "top-center",
+      position: "top-right",
     });
     onOpenChange(false);
   };

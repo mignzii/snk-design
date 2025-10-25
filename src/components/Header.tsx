@@ -24,10 +24,11 @@ export const Header = () => {
   }, []);
 
   const menuItems = [
-    { label: "SHOP", href: "/" },
-    { label: "NEW", href: "/" },
-    { label: "ROBES", href: "/" },
-    { label: "ACCESSOIRES", href: "/" },
+    { label: "BOUTIQUE", href: "/shop" },
+    { label: "SS25", href: "/collections/ss25" },
+    { label: "NEW", href: "/collections/new" },
+    { label: "ROBES", href: "/collections/head-pieces" },
+    { label: "ACCESSOIRES", href: "/collections/jewelry" },
   ];
 
   return (

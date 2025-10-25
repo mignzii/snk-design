@@ -55,7 +55,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     addItem(cartItem);
     toast.success("Ajouté au panier", {
       description: `${node.title} - ${size}`,
-      position: "top-center",
+      position: "top-right",
     });
     setShowQuickAdd(false);
   };
