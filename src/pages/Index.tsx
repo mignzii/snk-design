@@ -165,9 +165,11 @@ const Index = () => {
                   Archive Sale
                 </h2>
                 <p className="text-sm tracking-[0.3em] uppercase mb-8">Drop II</p>
-                <button className="px-8 py-3 border border-white/80 hover:bg-white hover:text-foreground transition-all tracking-[0.2em] text-sm uppercase">
-                  View Collection
-                </button>
+                <Link to="/shop">
+                  <button className="px-8 py-3 border border-white/80 hover:bg-white hover:text-foreground transition-all tracking-[0.2em] text-sm uppercase">
+                    View Collection
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="relative aspect-[3/4] bg-secondary/10 overflow-hidden group">
@@ -182,9 +184,11 @@ const Index = () => {
                   Archive Sale
                 </h2>
                 <p className="text-sm tracking-[0.3em] uppercase mb-8">Drop II</p>
-                <button className="px-8 py-3 border border-white/80 hover:bg-white hover:text-foreground transition-all tracking-[0.2em] text-sm uppercase">
-                  Shop Now
-                </button>
+                <Link to="/shop">
+                  <button className="px-8 py-3 border border-white/80 hover:bg-white hover:text-foreground transition-all tracking-[0.2em] text-sm uppercase">
+                    Shop Now
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
