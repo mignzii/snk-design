@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import aboutHero from "@/assets/about-hero.jpg";
 
 export const AboutSection = () => {
   return (
@@ -7,11 +8,12 @@ export const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1">
-            <div className="aspect-[3/4] bg-secondary/10 overflow-hidden">
+            <div className="aspect-[3/4] bg-secondary/10 overflow-hidden relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-amber-500/10 mix-blend-overlay z-10" />
               <img 
-                src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&q=80"
+                src={aboutHero}
                 alt="Notre atelier"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover brightness-105 contrast-105 saturate-110 transition-transform duration-700 group-hover:scale-105"
               />
             </div>
           </div>
