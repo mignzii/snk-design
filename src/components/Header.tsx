@@ -42,12 +42,12 @@ export const Header = () => {
       </div>
       
       <header className={cn("sticky top-0 z-50 transition-all duration-300 bg-background border-b", isScrolled && "shadow-sm")}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2 md:px-4">
           <div className="flex items-center justify-between h-16">
             {/* Left - Menu button on mobile, navigation on desktop */}
-            <div className="flex items-center flex-1">
-              <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <div className="flex items-center flex-1 min-w-0">
+              <Button variant="ghost" size="icon" className="lg:hidden h-8 w-8 shrink-0" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                {isMobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </Button>
 
               <nav className="hidden lg:flex items-center gap-6">
@@ -58,26 +58,26 @@ export const Header = () => {
             </div>
 
             {/* Center - Logo */}
-            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
-              <h1 className="text-[10px] md:text-xl font-medium tracking-[0.05em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK-DESIGN</h1>
+            <Link to="/" className="flex-shrink-0 px-2">
+              <h1 className="text-[9px] md:text-xl font-medium tracking-[0.05em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK-DESIGN</h1>
             </Link>
 
             {/* Right - Icons */}
-            <div className="flex items-center gap-0.5 md:gap-1 flex-1 justify-end">
-              <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setSearchOpen(true)}>
+            <div className="flex items-center gap-0 md:gap-1 flex-1 min-w-0 justify-end">
+              <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => setSearchOpen(true)}>
                 <Search className="h-4 w-4" />
               </Button>
               
               <Link to="/wishlist">
-                <Button variant="ghost" size="icon" className="h-9 w-9 relative">
+                <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0 relative">
                   <Heart className="h-4 w-4" />
-                  {wishlistCount > 0 && <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
+                  {wishlistCount > 0 && <Badge className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-[10px]">
                       {wishlistCount}
                     </Badge>}
                 </Button>
               </Link>
               
-              <Button variant="ghost" size="icon" className="h-9 w-9">
+              <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
                 <User className="h-4 w-4" />
               </Button>
               <CartDrawer />
