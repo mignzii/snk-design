@@ -2,6 +2,9 @@ import { Instagram } from "lucide-react";
 import lookbook1 from "@/assets/lookbook-1.jpg";
 import lookbook2 from "@/assets/lookbook-2.jpg";
 import lookbook3 from "@/assets/lookbook-3.jpg";
+import filAzur1 from "@/assets/fil-azur-1.jpg";
+import filDeJade1 from "@/assets/fil-de-jade-1.jpg";
+import royaleDress1 from "@/assets/royale-dress-1.jpg";
 
 const instagramPosts = [
   {
@@ -9,23 +12,23 @@ const instagramPosts = [
     likes: "2.3K",
   },
   {
-    image: lookbook2,
+    image: filAzur1,
     likes: "1.8K",
   },
   {
-    image: lookbook3,
+    image: lookbook2,
     likes: "3.1K",
   },
   {
-    image: lookbook1,
+    image: filDeJade1,
     likes: "2.7K",
   },
   {
-    image: lookbook2,
+    image: lookbook3,
     likes: "1.9K",
   },
   {
-    image: lookbook3,
+    image: royaleDress1,
     likes: "2.5K",
   },
 ];

@@ -71,14 +71,14 @@ export const Header = () => {
             </div>
 
             {/* Center - Logo */}
-            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
-              <h1 className="text-sm md:text-xl font-medium tracking-[0.15em] md:tracking-[0.2em] uppercase">
+            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 max-w-[140px] md:max-w-none">
+              <h1 className="text-xs md:text-xl font-medium tracking-[0.1em] md:tracking-[0.2em] uppercase whitespace-nowrap">
                 SNK-DESIGN
               </h1>
             </Link>
 
             {/* Right - Icons */}
-            <div className="flex items-center gap-1 flex-1 justify-end">
+            <div className="flex items-center gap-0.5 md:gap-1 flex-1 justify-end">
               <Button 
                 variant="ghost" 
                 size="icon" 
