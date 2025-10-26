@@ -26,7 +26,7 @@ export default function About() {
                 Notre Histoire
               </h1>
               <p className="text-sm md:text-base tracking-[0.3em] uppercase">
-                L'Art de la Haute Couture
+                Haute Couture Africaine
               </p>
             </div>
           </div>
@@ -51,27 +51,28 @@ export default function About() {
                   SNKDESIGN
                 </h2>
                 <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground">
-                  Elegant Fashion
+                  Haute Couture Africaine
                 </p>
                 
                 <div className="h-px w-24 bg-primary mx-auto my-8" />
                 
                 <div className="space-y-6 text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                   <p className="text-lg">
-                    SNK-Design incarne l'excellence de la haute couture française, 
-                    où chaque création est une œuvre d'art pensée pour sublimer la 
-                    féminité moderne.
+                    SNK-Design incarne l'excellence de la haute couture africaine, 
+                    où chaque création est une œuvre d'art pensée pour célébrer la 
+                    beauté et l'élégance de la femme africaine moderne.
                   </p>
                   <p>
-                    Fondée sur les valeurs d'élégance intemporelle et de sophistication, 
-                    notre maison s'attache à créer des pièces exceptionnelles qui transcendent 
-                    les tendances éphémères pour offrir un style résolument unique.
+                    Fondée sur les valeurs d'authenticité, d'élégance intemporelle et de 
+                    fierté culturelle, notre maison s'attache à créer des pièces exceptionnelles 
+                    qui transcendent les frontières pour offrir un style résolument unique, 
+                    ancré dans l'héritage africain.
                   </p>
                   <p>
-                    Notre atelier perpétue les techniques ancestrales de la couture française, 
+                    Notre atelier perpétue les techniques ancestrales de la couture africaine, 
                     tout en intégrant les innovations textiles les plus récentes. Chaque robe 
-                    est façonnée avec une attention méticuleuse aux détails, des tissus 
-                    soigneusement sélectionnés aux finitions parfaites.
+                    est façonnée avec une attention méticuleuse aux détails, des tissus africains 
+                    soigneusement sélectionnés aux finitions parfaites qui racontent une histoire.
                   </p>
                 </div>
               </div>
@@ -120,8 +121,8 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-light tracking-wide">Savoir-Faire</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Un héritage artisanal transmis de génération en génération, 
-                  perpétuant l'art de la haute couture française.
+                  Un héritage artisanal africain transmis de génération en génération, 
+                  perpétuant l'art de la haute couture avec authenticité et fierté.
                 </p>
               </div>
             </div>

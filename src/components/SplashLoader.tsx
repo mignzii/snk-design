@@ -29,7 +29,7 @@ export const SplashLoader = ({ onComplete }: { onComplete: () => void }) => {
           SNKDESIGN
         </h1>
         <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-muted-foreground mt-2 animate-fade-in">
-          Elegant Fashion
+          Haute Couture Africaine
         </p>
       </div>
     </div>
