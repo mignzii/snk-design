@@ -149,38 +149,23 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Black Friday Promotion */}
-      <section className="py-20 bg-gradient-to-br from-rose-500/5 to-amber-500/5">
+      {/* Archive Sales Collection */}
+      <section className="py-12 sm:py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8 animate-fade-in">
-              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-4">
-                Black Friday
-              </p>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-6">
-                Votre robe coup de cœur,<br />
-                à prix Black Friday.
-              </h2>
-              <div className="h-px w-24 bg-primary mx-auto my-8" />
-              <p className="text-lg md:text-xl text-muted-foreground mb-4">
-                Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.
-              </p>
-              <div className="inline-block bg-foreground text-background px-6 py-3 rounded-sm mb-8">
-                <p className="text-sm tracking-[0.2em] uppercase">
-                  Code : <span className="font-semibold">SNKDESIGN50</span>
-                </p>
-              </div>
-            </div>
-            
-            <Link to="/shop">
-              <Button 
-                variant="default"
-                className="uppercase tracking-[0.2em] text-xs px-12 h-14 hover:scale-105 transition-transform"
-              >
-                Profitez de l'offre
-              </Button>
-            </Link>
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-xs sm:text-sm font-normal tracking-[0.2em] sm:tracking-[0.3em] uppercase text-muted-foreground mb-2">
+              Archive Sales
+            </h2>
+            <div className="w-12 sm:w-16 h-px bg-foreground mx-auto mt-3 sm:mt-4"></div>
           </div>
+          
+          {products.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 sm:gap-x-4 gap-y-8 sm:gap-y-12">
+              {products.slice(4, 8).map((product) => (
+                <ProductCard key={product.node.id} product={product} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

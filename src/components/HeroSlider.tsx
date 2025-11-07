@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import lookbook1 from "@/assets/lookbook-1.jpg";
 import lookbook2 from "@/assets/lookbook-2.jpg";
 import lookbook3 from "@/assets/lookbook-3.jpg";
@@ -8,16 +10,19 @@ const slides = [
     image: lookbook1,
     title: "NOUVELLE COLLECTION",
     subtitle: "PRINTEMPS 2025",
+    showButton: false,
   },
   {
     image: lookbook2,
     title: "PIÈCES EXCLUSIVES",
     subtitle: "ÉDITION LIMITÉE",
+    showButton: false,
   },
   {
     image: lookbook3,
-    title: "HAUTE COUTURE",
-    subtitle: "SUR MESURE",
+    title: "BLACK FRIDAY",
+    subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais. Code : SNKDESIGN50",
+    showButton: true,
   },
 ];
 
@@ -71,9 +76,23 @@ export const HeroSlider = () => {
           <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-8xl font-normal tracking-[0.1em] sm:tracking-[0.15em] uppercase mb-2 sm:mb-3 animate-fade-in break-words">
             {slides[currentSlide].title}
           </h2>
-          <p className="text-xs sm:text-base md:text-lg font-light tracking-[0.2em] sm:tracking-[0.3em] uppercase animate-fade-in break-words">
+          <p className={`font-light animate-fade-in break-words max-w-4xl mx-auto ${
+            slides[currentSlide].showButton 
+              ? "text-sm sm:text-lg md:text-xl mb-6 sm:mb-8 tracking-normal normal-case" 
+              : "text-xs sm:text-base md:text-lg tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+          }`}>
             {slides[currentSlide].subtitle}
           </p>
+          {slides[currentSlide].showButton && (
+            <Link to="/shop">
+              <Button 
+                variant="default"
+                className="uppercase tracking-[0.2em] text-xs px-8 sm:px-12 h-12 sm:h-14 hover:scale-105 transition-transform animate-fade-in"
+              >
+                Shop Now
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
 
