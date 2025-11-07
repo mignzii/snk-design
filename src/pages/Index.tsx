@@ -11,6 +11,7 @@ import { SocialProofSection } from "@/components/SocialProofSection";
 import { LookbookSection } from "@/components/LookbookSection";
 import { PressSection } from "@/components/PressSection";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
+import { PromoModal } from "@/components/PromoModal";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { Loader2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ import { Button } from "@/components/ui/button";
 const Index = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showPromoModal, setShowPromoModal] = useState(false);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -34,9 +36,28 @@ const Index = () => {
     loadProducts();
   }, []);
 
+  useEffect(() => {
+    // Check if user has seen the promo modal before
+    const hasSeenPromo = sessionStorage.getItem("hasSeenPromoModal");
+    if (!hasSeenPromo) {
+      // Show modal after a short delay for better UX
+      const timer = setTimeout(() => {
+        setShowPromoModal(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleClosePromoModal = () => {
+    setShowPromoModal(false);
+    sessionStorage.setItem("hasSeenPromoModal", "true");
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      
+      <PromoModal open={showPromoModal} onClose={handleClosePromoModal} />
       
       <HeroSlider />
       
