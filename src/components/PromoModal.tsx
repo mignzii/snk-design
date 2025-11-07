@@ -15,7 +15,6 @@ interface PromoModalProps {
 export const PromoModal = ({ open, onClose }: PromoModalProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [acceptsCommunications, setAcceptsCommunications] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -23,7 +22,7 @@ export const PromoModal = ({ open, onClose }: PromoModalProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name || !email || !phone) {
+    if (!name || !email) {
       toast({
         title: "Erreur",
         description: "Veuillez remplir tous les champs",
@@ -56,7 +55,7 @@ export const PromoModal = ({ open, onClose }: PromoModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl p-0 gap-0 overflow-hidden">
+      <DialogContent className="max-w-4xl p-0 gap-0 overflow-hidden">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 z-10 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
@@ -76,20 +75,23 @@ export const PromoModal = ({ open, onClose }: PromoModalProps) => {
           </div>
 
           {/* Right side - Form */}
-          <div className="p-8 lg:p-12 flex flex-col justify-center">
-            <div className="space-y-6">
+          <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+            <div className="space-y-4 sm:space-y-6">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">
-                  Profitez de 20% de réduction en rejoignant dès maintenant notre file d'attente !
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
+                  Recevez votre code promo exclusif maintenant !
                 </h2>
-                <p className="text-sm text-red-500">
+                <p className="text-sm sm:text-base text-muted-foreground">
+                  Inscrivez-vous à notre liste VIP et recevez immédiatement votre code promo par email. Ne manquez pas cette offre exclusive !
+                </p>
+                <p className="text-xs sm:text-sm text-red-500">
                   * Si vous êtes déjà inscrit, merci de fermer le formulaire !
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Prénom et Nom</Label>
+                  <Label htmlFor="name" className="text-sm sm:text-base">Prénom et Nom</Label>
                   <Input
                     id="name"
                     type="text"
@@ -97,12 +99,12 @@ export const PromoModal = ({ open, onClose }: PromoModalProps) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="h-12"
+                    className="h-10 sm:h-12 text-sm sm:text-base"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email" className="text-sm sm:text-base">Email</Label>
                   <Input
                     id="email"
                     type="email"
@@ -110,20 +112,7 @@ export const PromoModal = ({ open, onClose }: PromoModalProps) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="h-12"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Numéro de téléphone</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+221 77 636 78 89"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                    className="h-12"
+                    className="h-10 sm:h-12 text-sm sm:text-base"
                   />
                 </div>
 
@@ -143,10 +132,10 @@ export const PromoModal = ({ open, onClose }: PromoModalProps) => {
 
                 <Button
                   type="submit"
-                  className="w-full h-14 text-base"
+                  className="w-full h-12 sm:h-14 text-sm sm:text-base"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Envoi en cours..." : "Rejoindre la file d'attente"}
+                  {isSubmitting ? "Envoi en cours..." : "Recevoir mon code promo"}
                 </Button>
               </form>
             </div>

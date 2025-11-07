@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, CreditCard, Shield, Truck } from "lucide-react";
+import { Facebook, Instagram, CreditCard, Shield, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
@@ -16,14 +16,35 @@ export const Footer = () => {
               pour la femme moderne et élégante.
             </p>
             <div className="flex gap-3">
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Instagram className="h-4 w-4" />
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="h-10 w-10 hover:bg-primary/10"
+                asChild
+              >
+                <a 
+                  href="https://www.instagram.com/snk_design1/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Facebook className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Twitter className="h-4 w-4" />
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="h-10 w-10 hover:bg-primary/10"
+                asChild
+              >
+                <a 
+                  href="https://www.facebook.com/share/1GTvQt6A66/?mibextid=wwXIfr" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
               </Button>
             </div>
           </div>
@@ -57,26 +78,31 @@ export const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="font-semibold text-sm sm:text-base mb-4">Service Client</h4>
+            <h4 className="font-semibold text-sm sm:text-base mb-4">Informations</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-muted-foreground">
               <li>
-                <button className="hover:text-accent transition-colors text-left">
-                  Contact
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-accent transition-colors text-left">
-                  Livraison & Retours
-                </button>
-              </li>
-              <li>
-                <button className="hover:text-accent transition-colors text-left">
-                  Guide des Tailles
-                </button>
+                <Link to="/faq" className="hover:text-accent transition-colors text-left">
+                  Est-ce que la tenue sera à ma taille ?
+                </Link>
               </li>
               <li>
                 <Link to="/faq" className="hover:text-accent transition-colors text-left">
-                  FAQ
+                  Retours & Remboursements
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-accent transition-colors text-left">
+                  Livraison
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-accent transition-colors text-left">
+                  Paiements
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-accent transition-colors text-left">
+                  Commandes
                 </Link>
               </li>
             </ul>
