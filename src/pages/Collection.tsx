@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductCardSkeleton } from "@/components/ProductCardSkeleton";
@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import kimonoRoyaleImg from "@/assets/kimono-royale-1.jpg";
 import ensembleHeroImg from "@/assets/ensemble-hero.jpg";
+import jewelryHeroImg from "@/assets/jewelry-hero.jpg";
 
 const Collection = () => {
   const { handle } = useParams<{ handle: string }>();
@@ -54,6 +55,7 @@ const Collection = () => {
   const collectionImages: { [key: string]: string } = {
     "robes": kimonoRoyaleImg,
     "ensembles": ensembleHeroImg,
+    "jewelry": jewelryHeroImg,
   };
 
   const collectionTitle = collectionTitles[handle || ""] || handle?.toUpperCase() || "Collection";
@@ -265,7 +267,30 @@ const Collection = () => {
 
           {/* Products Grid */}
           <div>
-            {loading ? (
+            {handle === "jewelry" ? (
+              <div className="flex flex-col items-center justify-center py-32 px-4">
+                <div className="max-w-2xl text-center space-y-6">
+                  <h2 className="text-4xl md:text-6xl font-light tracking-[0.2em] uppercase text-foreground">
+                    Bientôt Disponible
+                  </h2>
+                  <div className="space-y-4">
+                    <p className="text-lg md:text-xl text-muted-foreground">
+                      Notre collection exclusive d'accessoires arrive prochainement.
+                    </p>
+                    <p className="text-base text-muted-foreground">
+                      Découvrez bientôt nos bijoux et accessoires raffinés, conçus pour sublimer votre style.
+                    </p>
+                  </div>
+                  <div className="pt-8">
+                    <Link to="/shop">
+                      <Button size="lg" className="uppercase tracking-widest text-xs px-12 py-6">
+                        Découvrir nos collections
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ) : loading ? (
               <div
                 className={`grid gap-x-4 gap-y-12 ${
                   gridCols === 2

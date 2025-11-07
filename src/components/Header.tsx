@@ -82,7 +82,7 @@ export const Header = () => {
 
             {/* Center - Logo */}
             <Link to="/" className="flex-shrink-0 px-1 sm:px-2">
-              <h1 className="text-[10px] sm:text-sm md:text-xl font-medium tracking-[0.08em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK-DESIGN</h1>
+              <h1 className="text-sm sm:text-lg md:text-3xl font-bold tracking-[0.08em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK DESIGN</h1>
             </Link>
 
             {/* Right - Icons */}
