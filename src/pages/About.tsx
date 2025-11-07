@@ -74,6 +74,20 @@ export default function About() {
                     est façonnée avec une attention méticuleuse aux détails, des tissus africains 
                     soigneusement sélectionnés aux finitions parfaites qui racontent une histoire.
                   </p>
+                  <p>
+                    Tout a commencé par une passion pour les textiles africains et une vision : 
+                    révéler la beauté intemporelle de la femme africaine à travers des créations 
+                    qui honorent son héritage tout en embrassant la modernité. Chaque collection 
+                    puise son inspiration dans la richesse des cultures africaines, des motifs 
+                    traditionnels aux couleurs vibrantes qui célèbrent notre continent.
+                  </p>
+                  <p>
+                    Chez SNK-Design, nous croyons que chaque femme mérite de se sentir exceptionnelle. 
+                    Nos créations ne sont pas simplement des vêtements, mais des expressions de 
+                    confiance, d'élégance et de fierté culturelle. Nous travaillons avec des 
+                    artisans locaux pour préserver les savoir-faire ancestraux tout en créant 
+                    des opportunités économiques au sein de nos communautés.
+                  </p>
                 </div>
               </div>
             </div>

@@ -75,9 +75,9 @@ export const Footer = () => {
                 </button>
               </li>
               <li>
-                <button className="hover:text-accent transition-colors text-left">
+                <Link to="/faq" className="hover:text-accent transition-colors text-left">
                   FAQ
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

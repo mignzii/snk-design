@@ -52,6 +52,9 @@ export const Header = () => {
   }, {
     labelKey: "menu.accessories",
     href: "/collections/jewelry"
+  }, {
+    labelKey: "menu.about",
+    href: "/about"
   }];
   return <>
       {/* Top announcement bar with rotating promos */}
