@@ -4,17 +4,17 @@ const features = [
   {
     icon: Truck,
     title: "Livraison Gratuite",
-    description: "Livraison offerte dès 100€ d'achat",
+    description: "À l'achat de deux articles",
   },
   {
     icon: RefreshCw,
-    title: "Retours Gratuits",
-    description: "Retours sous 30 jours sans frais",
+    title: "Retours",
+    description: "Retour à vos frais",
   },
   {
     icon: Shield,
-    title: "Paiement Sécurisé",
-    description: "Transactions 100% sécurisées",
+    title: "Délai de Livraison",
+    description: "3 à 5 jours ouvrables",
   },
   {
     icon: Award,
