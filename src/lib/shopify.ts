@@ -221,7 +221,7 @@ export interface CartItem {
   customLength?: string;
 }
 
-export async function createStorefrontCheckout(items: CartItem[]): Promise<string> {
+export async function createStorefrontCheckout(items: CartItem[], discountCode?: string): Promise<string> {
   try {
     const lines = items.map(item => ({
       quantity: item.quantity,
@@ -246,6 +246,12 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
 
     const url = new URL(cart.checkoutUrl);
     url.searchParams.set('channel', 'online_store');
+    
+    // Add discount code if provided
+    if (discountCode && discountCode.trim()) {
+      url.searchParams.set('discount', discountCode.trim());
+    }
+    
     return url.toString();
   } catch (error) {
     console.error('Error creating storefront checkout:', error);

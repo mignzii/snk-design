@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -9,15 +10,24 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
+import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2, Tag } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const CartDrawer = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const { items, isLoading, updateQuantity, removeItem, createCheckout } = useCartStore();
+  const [promoInput, setPromoInput] = useState('');
+  const { items, isLoading, promoCode, updateQuantity, removeItem, setPromoCode, createCheckout } = useCartStore();
   
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce((sum, item) => sum + (parseFloat(item.price.amount) * item.quantity), 0);
+
+  const handleApplyPromo = () => {
+    if (promoInput.trim()) {
+      setPromoCode(promoInput.trim().toUpperCase());
+    }
+  };
 
   const handleCheckout = async () => {
     try {
@@ -47,9 +57,9 @@ export const CartDrawer = () => {
       
       <SheetContent className="w-full sm:max-w-lg flex flex-col h-full">
         <SheetHeader className="flex-shrink-0">
-          <SheetTitle className="font-serif">Panier</SheetTitle>
+          <SheetTitle className="font-serif">{t('cart.title')}</SheetTitle>
           <SheetDescription>
-            {totalItems === 0 ? "Votre panier est vide" : `${totalItems} article${totalItems !== 1 ? 's' : ''}`}
+            {totalItems === 0 ? t('cart.empty') : `${totalItems} ${totalItems === 1 ? t('cart.items') : t('cart.items_plural')}`}
           </SheetDescription>
         </SheetHeader>
         
@@ -58,7 +68,7 @@ export const CartDrawer = () => {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <ShoppingCart className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground">Votre panier est vide</p>
+                <p className="text-muted-foreground">{t('cart.empty')}</p>
               </div>
             </div>
           ) : (
@@ -84,9 +94,9 @@ export const CartDrawer = () => {
                         </p>
                         {(item.customSize || item.customLength) && (
                           <p className="text-xs text-muted-foreground mt-1">
-                            {item.customSize && `Taille: ${item.customSize}`}
+                            {item.customSize && `${t('cart.size')}: ${item.customSize}`}
                             {item.customSize && item.customLength && ' • '}
-                            {item.customLength && `Longueur: ${item.customLength}`}
+                            {item.customLength && `${t('cart.length')}: ${item.customLength}`}
                           </p>
                         )}
                         <p className="font-semibold mt-1">
@@ -130,8 +140,35 @@ export const CartDrawer = () => {
               </div>
               
               <div className="flex-shrink-0 space-y-4 pt-4 mt-4 border-t bg-background">
+                {/* Promo Code Section */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">{t('cart.promo_code')}</label>
+                  <div className="flex gap-2">
+                    <Input
+                      placeholder={t('cart.promo_placeholder')}
+                      value={promoInput}
+                      onChange={(e) => setPromoInput(e.target.value.toUpperCase())}
+                      className="flex-1"
+                    />
+                    <Button 
+                      onClick={handleApplyPromo}
+                      variant="outline"
+                      size="sm"
+                      disabled={!promoInput.trim()}
+                    >
+                      <Tag className="w-4 h-4 mr-1" />
+                      {t('cart.apply')}
+                    </Button>
+                  </div>
+                  {promoCode && (
+                    <p className="text-xs text-green-600">
+                      ✓ Code appliqué: {promoCode}
+                    </p>
+                  )}
+                </div>
+
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-serif font-semibold">Total</span>
+                  <span className="text-lg font-serif font-semibold">{t('cart.total')}</span>
                   <span className="text-xl font-bold">
                     CAD {totalPrice.toFixed(2)}
                   </span>
@@ -146,18 +183,15 @@ export const CartDrawer = () => {
                   {isLoading ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Création...
+                      {t('cart.creating')}
                     </>
                   ) : (
                     <>
                       <ExternalLink className="w-4 h-4 mr-2" />
-                      Commander
+                      {t('cart.checkout')}
                     </>
                   )}
                 </Button>
-                <p className="text-xs text-center text-muted-foreground">
-                  🚚 Livraison gratuite dès 100€
-                </p>
               </div>
             </>
           )}

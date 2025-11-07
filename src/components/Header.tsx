@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, User, Menu, X, Heart } from "lucide-react";
+import { Search, User, Menu, X, Heart, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { CartDrawer } from "@/components/CartDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { useWishlistStore } from "@/stores/wishlistStore";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
 export const Header = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,25 +28,25 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const menuItems = [{
-    label: "BOUTIQUE",
+    labelKey: "menu.shop",
     href: "/shop"
   }, {
-    label: "ROBES",
+    labelKey: "menu.dresses",
     href: "/collections/robes"
   }, {
-    label: "ENSEMBLES",
+    labelKey: "menu.sets",
     href: "/collections/ensembles"
   }, {
-    label: "NEW",
+    labelKey: "menu.new",
     href: "/collections/new"
   }, {
-    label: "ACCESSOIRES",
+    labelKey: "menu.accessories",
     href: "/collections/jewelry"
   }];
   return <>
       {/* Top announcement bar */}
       <div className="bg-foreground text-background py-2 text-center text-xs uppercase tracking-wider">
-        Livraison standard 7-15 jours ouvrables
+        {t('header.announcement')}
       </div>
       
       <header className={cn("sticky top-0 z-50 transition-all duration-300 bg-background border-b", isScrolled && "shadow-sm")}>
@@ -51,8 +59,8 @@ export const Header = () => {
               </Button>
 
               <nav className="hidden lg:flex items-center gap-6">
-                {menuItems.map(item => <Link key={item.label} to={item.href} className="text-xs font-medium tracking-wider transition-colors hover:text-muted-foreground">
-                    {item.label}
+                {menuItems.map(item => <Link key={item.labelKey} to={item.href} className="text-xs font-medium tracking-wider transition-colors hover:text-muted-foreground">
+                    {t(item.labelKey)}
                   </Link>)}
               </nav>
             </div>
@@ -64,6 +72,22 @@ export const Header = () => {
 
             {/* Right - Icons */}
             <div className="flex items-center gap-0 md:gap-1 flex-1 min-w-0 justify-end">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
+                    <Globe className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => setLanguage('fr')} className={language === 'fr' ? 'bg-accent' : ''}>
+                    🇫🇷 Français
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setLanguage('en')} className={language === 'en' ? 'bg-accent' : ''}>
+                    🇬🇧 English
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
               <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => setSearchOpen(true)}>
                 <Search className="h-4 w-4" />
               </Button>
@@ -88,8 +112,8 @@ export const Header = () => {
 
           {/* Mobile menu */}
           {isMobileMenuOpen && <nav className="lg:hidden py-4 border-t animate-fade-in">
-              {menuItems.map(item => <Link key={item.label} to={item.href} className="block py-3 text-xs font-medium tracking-wider transition-colors hover:text-muted-foreground" onClick={() => setIsMobileMenuOpen(false)}>
-                  {item.label}
+              {menuItems.map(item => <Link key={item.labelKey} to={item.href} className="block py-3 text-xs font-medium tracking-wider transition-colors hover:text-muted-foreground" onClick={() => setIsMobileMenuOpen(false)}>
+                  {t(item.labelKey)}
                 </Link>)}
             </nav>}
         </div>
