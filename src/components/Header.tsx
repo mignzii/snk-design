@@ -68,7 +68,7 @@ export const Header = () => {
         <div className="container mx-auto px-2 md:px-4">
           <div className="flex items-center justify-between h-16">
             {/* Left - Menu button on mobile, navigation on desktop */}
-            <div className="flex items-center flex-1 min-w-0">
+            <div className="flex items-center flex-1 justify-start">
               <Button variant="ghost" size="icon" className="lg:hidden h-8 w-8 shrink-0" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                 {isMobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </Button>
@@ -81,12 +81,12 @@ export const Header = () => {
             </div>
 
             {/* Center - Logo */}
-            <Link to="/" className="flex-shrink-0 px-1 sm:px-2">
+            <Link to="/" className="absolute left-1/2 -translate-x-1/2 px-1 sm:px-2">
               <h1 className="text-sm sm:text-lg md:text-3xl font-bold tracking-[0.08em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK DESIGN</h1>
             </Link>
 
             {/* Right - Icons */}
-            <div className="flex items-center gap-0 md:gap-1 flex-1 min-w-0 justify-end">
+            <div className="flex items-center gap-0 md:gap-1 flex-1 justify-end">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
