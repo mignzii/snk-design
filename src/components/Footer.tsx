@@ -10,8 +10,8 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="font-serif font-bold text-lg mb-4">SNK-Design</h3>
-            <p className="text-sm text-muted-foreground mb-4">
+            <h3 className="font-serif font-bold text-base sm:text-lg mb-4">SNK-Design</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
               Découvrez notre collection exclusive de robes et vêtements haut de gamme
               pour la femme moderne et élégante.
             </p>
@@ -30,8 +30,8 @@ export const Footer = () => {
 
           {/* Shop */}
           <div>
-            <h4 className="font-semibold mb-4">Boutique</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="font-semibold text-sm sm:text-base mb-4">Boutique</h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-muted-foreground">
               <li>
                 <button className="hover:text-accent transition-colors text-left">
                   Nouveautés
@@ -57,8 +57,8 @@ export const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="font-semibold mb-4">Service Client</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="font-semibold text-sm sm:text-base mb-4">Service Client</h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-muted-foreground">
               <li>
                 <button className="hover:text-accent transition-colors text-left">
                   Contact
@@ -84,47 +84,47 @@ export const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-semibold mb-4">Newsletter</h4>
-            <p className="text-sm text-muted-foreground mb-4">
+            <h4 className="font-semibold text-sm sm:text-base mb-4">Newsletter</h4>
+            <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
               Recevez nos dernières actualités et offres exclusives
             </p>
             <div className="flex gap-2">
               <Input
                 type="email"
                 placeholder="Votre email"
-                className="text-sm"
+                className="text-xs sm:text-sm"
               />
-              <Button>S'abonner</Button>
+              <Button className="text-xs sm:text-sm px-3 sm:px-4">S'abonner</Button>
             </div>
           </div>
         </div>
 
         {/* Payment Methods & Features */}
         <div className="border-t mt-8 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Shield className="h-4 w-4" />
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 mb-6">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
+              <div className="flex items-center gap-2 text-[10px] sm:text-xs text-muted-foreground whitespace-nowrap">
+                <Shield className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                 <span>Paiement sécurisé SSL</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Truck className="h-4 w-4" />
+              <div className="flex items-center gap-2 text-[10px] sm:text-xs text-muted-foreground whitespace-nowrap">
+                <Truck className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                 <span>Livraison gratuite +100€</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              <CreditCard className="h-6 w-6 text-muted-foreground" />
-              <span className="text-xs text-muted-foreground">Visa, Mastercard, PayPal, Apple Pay</span>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <CreditCard className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground flex-shrink-0" />
+              <span className="text-[10px] sm:text-xs text-muted-foreground text-center sm:text-left">Visa, Mastercard, PayPal, Apple Pay</span>
             </div>
           </div>
           
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-            <p>© 2025 SNK-Design. Tous droits réservés.</p>
-            <div className="flex items-center gap-4">
-              <Link to="/legal/terms" className="hover:text-foreground transition-colors">Conditions Générales</Link>
-              <Link to="/legal/privacy" className="hover:text-foreground transition-colors">Confidentialité</Link>
-              <Link to="/legal/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-[10px] sm:text-xs text-muted-foreground">
+            <p className="text-center md:text-left">© 2025 SNK-Design. Tous droits réservés.</p>
+            <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center">
+              <Link to="/legal/terms" className="hover:text-foreground transition-colors whitespace-nowrap">Conditions Générales</Link>
+              <Link to="/legal/privacy" className="hover:text-foreground transition-colors whitespace-nowrap">Confidentialité</Link>
+              <Link to="/legal/cookies" className="hover:text-foreground transition-colors whitespace-nowrap">Cookies</Link>
             </div>
           </div>
         </div>

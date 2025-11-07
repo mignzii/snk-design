@@ -67,11 +67,11 @@ export const HeroSlider = () => {
 
       {/* Content */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center text-white z-10 px-4">
-          <h2 className="text-4xl md:text-6xl lg:text-8xl font-normal tracking-[0.15em] uppercase mb-3 animate-fade-in">
+        <div className="text-center text-white z-10 px-4 max-w-full">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-8xl font-normal tracking-[0.1em] sm:tracking-[0.15em] uppercase mb-2 sm:mb-3 animate-fade-in break-words">
             {slides[currentSlide].title}
           </h2>
-          <p className="text-base md:text-lg font-light tracking-[0.3em] uppercase animate-fade-in">
+          <p className="text-xs sm:text-base md:text-lg font-light tracking-[0.2em] sm:tracking-[0.3em] uppercase animate-fade-in break-words">
             {slides[currentSlide].subtitle}
           </p>
         </div>

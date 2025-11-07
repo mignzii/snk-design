@@ -19,7 +19,17 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [promoIndex, setPromoIndex] = useState(0);
   const wishlistCount = useWishlistStore(state => state.items.length);
+  
+  const promoMessages = ['header.promo1', 'header.promo2', 'header.promo3'];
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPromoIndex((prev) => (prev + 1) % promoMessages.length);
+    }, 5000); // Change message every 5 seconds
+    return () => clearInterval(interval);
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -44,9 +54,11 @@ export const Header = () => {
     href: "/collections/jewelry"
   }];
   return <>
-      {/* Top announcement bar */}
-      <div className="bg-foreground text-background py-2 text-center text-xs uppercase tracking-wider">
-        {t('header.announcement')}
+      {/* Top announcement bar with rotating promos */}
+      <div className="bg-foreground text-background py-2 text-center text-[10px] sm:text-xs uppercase tracking-wider px-4 overflow-hidden">
+        <div className="animate-fade-in whitespace-nowrap overflow-hidden text-ellipsis">
+          {t(promoMessages[promoIndex])}
+        </div>
       </div>
       
       <header className={cn("sticky top-0 z-50 transition-all duration-300 bg-background border-b", isScrolled && "shadow-sm")}>
@@ -66,8 +78,8 @@ export const Header = () => {
             </div>
 
             {/* Center - Logo */}
-            <Link to="/" className="flex-shrink-0 px-2">
-              <h1 className="text-xs md:text-xl font-medium tracking-[0.08em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK-DESIGN</h1>
+            <Link to="/" className="flex-shrink-0 px-1 sm:px-2">
+              <h1 className="text-[10px] sm:text-sm md:text-xl font-medium tracking-[0.08em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK-DESIGN</h1>
             </Link>
 
             {/* Right - Icons */}

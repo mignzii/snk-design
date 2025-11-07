@@ -18,7 +18,9 @@ export const translations = {
     'menu.sets': 'ENSEMBLES',
     'menu.new': 'NEW',
     'menu.accessories': 'ACCESSOIRES',
-    'header.announcement': 'Livraison standard 7-15 jours ouvrables',
+    'header.promo1': 'Black Friday : jusqu\'à -30 % sur toute la boutique !',
+    'header.promo2': 'Nouvelles collections disponibles maintenant !',
+    'header.promo3': 'Livraison gratuite dès 2 articles',
     
     // Cart
     'cart.title': 'Panier',
@@ -70,7 +72,9 @@ export const translations = {
     'menu.sets': 'SETS',
     'menu.new': 'NEW',
     'menu.accessories': 'ACCESSORIES',
-    'header.announcement': 'Standard delivery 7-15 business days',
+    'header.promo1': 'Black Friday: up to -30% off entire store!',
+    'header.promo2': 'New collections available now!',
+    'header.promo3': 'Free shipping on 2+ items',
     
     // Cart
     'cart.title': 'Shopping Cart',

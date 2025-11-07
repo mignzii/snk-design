@@ -169,10 +169,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </Link>
       
       <Link to={`/product/${node.handle}`} className="block space-y-1">
-        <h3 className="font-normal text-sm line-clamp-1 group-hover:underline transition-all">
+        <h3 className="font-normal text-xs sm:text-sm line-clamp-2 group-hover:underline transition-all leading-relaxed">
           {node.title}
         </h3>
-        <p className="text-sm font-medium">
+        <p className="text-xs sm:text-sm font-medium">
           {currency} {formattedPrice}
         </p>
       </Link>
