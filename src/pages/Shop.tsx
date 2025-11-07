@@ -233,11 +233,11 @@ const Shop = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <Header />
 
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] bg-secondary/5 flex items-center justify-center overflow-hidden">
+      <section className="relative h-[50vh] min-h-[400px] bg-secondary/5 flex items-center justify-center overflow-hidden w-full">
         {products[0] && (
           <>
             <img
@@ -248,28 +248,28 @@ const Shop = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-background/50 to-background/80" />
           </>
         )}
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase mb-4 animate-fade-in">
+        <div className="relative z-10 text-center px-4 w-full max-w-full">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-light tracking-[0.15em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 animate-fade-in break-words">
             Boutique
           </h1>
-          <p className="text-sm md:text-base text-muted-foreground tracking-widest uppercase animate-fade-in" style={{ animationDelay: "100ms" }}>
+          <p className="text-xs sm:text-sm md:text-base text-muted-foreground tracking-[0.15em] sm:tracking-widest uppercase animate-fade-in break-words" style={{ animationDelay: "100ms" }}>
             Découvrez Notre Collection Exclusive
           </p>
         </div>
       </section>
 
       {/* Filters Bar */}
-      <section className="border-b border-border sticky top-[73px] bg-background z-30">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4 flex-1">
+      <section className="border-b border-border sticky top-[73px] bg-background z-30 w-full overflow-x-hidden">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
             {/* Mobile Filter Drawer */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="sm" className="lg:hidden uppercase tracking-wider text-xs">
-                  <SlidersHorizontal className="h-4 w-4 mr-2" />
+                <Button variant="outline" size="sm" className="lg:hidden uppercase tracking-wider text-[10px] sm:text-xs px-2 sm:px-3 whitespace-nowrap">
+                  <SlidersHorizontal className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   Filtres
                   {hasActiveFilters && (
-                    <span className="ml-2 h-2 w-2 rounded-full bg-primary animate-pulse" />
+                    <span className="ml-1 sm:ml-2 h-2 w-2 rounded-full bg-primary animate-pulse" />
                   )}
                 </Button>
               </SheetTrigger>
@@ -287,7 +287,7 @@ const Shop = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-transparent border border-border px-3 py-1.5 rounded text-sm tracking-[0.1em] uppercase cursor-pointer focus:outline-none focus:border-primary transition-colors"
+              className="bg-transparent border border-border px-2 sm:px-3 py-1 sm:py-1.5 rounded text-[10px] sm:text-sm tracking-[0.05em] sm:tracking-[0.1em] uppercase cursor-pointer focus:outline-none focus:border-primary transition-colors flex-1 min-w-0 max-w-[200px]"
             >
               <option value="best-selling">Best Sellers</option>
               <option value="newest">Nouveautés</option>
@@ -297,44 +297,44 @@ const Shop = () => {
             </select>
             
             {/* Product Count */}
-            <span className="text-sm text-muted-foreground hidden sm:block">
+            <span className="text-xs sm:text-sm text-muted-foreground hidden md:block whitespace-nowrap">
               {sortedProducts.length} produit{sortedProducts.length > 1 ? 's' : ''}
             </span>
           </div>
 
           {/* Grid Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
             <button
               onClick={() => setGridCols(2)}
-              className={`p-2 transition-colors ${
+              className={`p-1.5 sm:p-2 transition-colors ${
                 gridCols === 2 ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <Grid2X2 className="h-4 w-4" />
+              <Grid2X2 className="h-3 w-3 sm:h-4 sm:w-4" />
             </button>
             <button
               onClick={() => setGridCols(3)}
-              className={`p-2 transition-colors ${
+              className={`p-1.5 sm:p-2 transition-colors ${
                 gridCols === 3 ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <Grid3X3 className="h-4 w-4" />
+              <Grid3X3 className="h-3 w-3 sm:h-4 sm:w-4" />
             </button>
             <button
               onClick={() => setGridCols(4)}
-              className={`p-2 transition-colors hidden md:block ${
+              className={`p-1.5 sm:p-2 transition-colors hidden md:block ${
                 gridCols === 4 ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <LayoutGrid className="h-4 w-4" />
+              <LayoutGrid className="h-3 w-3 sm:h-4 sm:w-4" />
             </button>
           </div>
         </div>
       </section>
 
       {/* Products Grid with Sidebar */}
-      <section className="container mx-auto px-4 py-12 md:py-20">
-        <div className="grid lg:grid-cols-[280px_1fr] gap-12">
+      <section className="container mx-auto px-3 sm:px-4 py-8 sm:py-12 md:py-20 w-full max-w-full overflow-x-hidden">
+        <div className="grid lg:grid-cols-[280px_1fr] gap-6 sm:gap-8 lg:gap-12">
           {/* Desktop Filter Sidebar */}
           <aside className="hidden lg:block">
             <div className="sticky top-32">
@@ -344,10 +344,10 @@ const Shop = () => {
           </aside>
 
           {/* Products Grid */}
-          <div>
+          <div className="w-full max-w-full overflow-x-hidden">
             {loading ? (
               <div
-                className={`grid gap-x-4 gap-y-12 ${
+                className={`grid gap-x-3 sm:gap-x-4 gap-y-8 sm:gap-y-12 ${
                   gridCols === 2
                     ? "grid-cols-2"
                     : gridCols === 3
@@ -360,9 +360,9 @@ const Shop = () => {
                 ))}
               </div>
             ) : sortedProducts.length === 0 ? (
-              <div className="text-center py-20">
-                <p className="text-lg text-muted-foreground mb-4">Aucun produit trouvé</p>
-                <p className="text-sm text-muted-foreground mb-8">
+              <div className="text-center py-12 sm:py-20">
+                <p className="text-base sm:text-lg text-muted-foreground mb-3 sm:mb-4">Aucun produit trouvé</p>
+                <p className="text-xs sm:text-sm text-muted-foreground mb-6 sm:mb-8">
                   Essayez d'ajuster vos filtres
                 </p>
                 {hasActiveFilters && (
@@ -374,7 +374,7 @@ const Shop = () => {
             ) : (
               <>
                 <div
-                  className={`grid gap-x-4 gap-y-12 ${
+                  className={`grid gap-x-3 sm:gap-x-4 gap-y-8 sm:gap-y-12 ${
                     gridCols === 2
                       ? "grid-cols-2"
                       : gridCols === 3
@@ -385,7 +385,7 @@ const Shop = () => {
                   {sortedProducts.slice(0, displayedCount).map((product, index) => (
                     <div 
                       key={product.node.id} 
-                      className="animate-fade-up" 
+                      className="animate-fade-up w-full" 
                       style={{ animationDelay: `${(index % 12) * 30}ms` }}
                     >
                       <ProductCard product={product} />
@@ -395,12 +395,12 @@ const Shop = () => {
                 
                 {/* Load More Button */}
                 {displayedCount < sortedProducts.length && (
-                  <div className="text-center mt-16">
+                  <div className="text-center mt-12 sm:mt-16">
                     <Button
                       variant="outline"
                       size="lg"
                       onClick={() => setDisplayedCount(prev => prev + 12)}
-                      className="px-12 py-6 uppercase tracking-widest text-xs hover:bg-primary hover:text-primary-foreground transition-all"
+                      className="px-6 sm:px-12 py-4 sm:py-6 uppercase tracking-widest text-[10px] sm:text-xs hover:bg-primary hover:text-primary-foreground transition-all"
                     >
                       Voir Plus ({sortedProducts.length - displayedCount} restants)
                     </Button>
