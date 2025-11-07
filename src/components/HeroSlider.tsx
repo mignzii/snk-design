@@ -8,15 +8,15 @@ import lookbook3 from "@/assets/lookbook-3.jpg";
 const slides = [
   {
     image: lookbook1,
-    title: "NOUVELLE COLLECTION",
-    subtitle: "PRINTEMPS 2025",
-    showButton: false,
+    title: "BLACK FRIDAY",
+    subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais. Code : SNKDESIGN50",
+    showButton: true,
   },
   {
     image: lookbook2,
-    title: "PIÈCES EXCLUSIVES",
-    subtitle: "ÉDITION LIMITÉE",
-    showButton: false,
+    title: "BLACK FRIDAY",
+    subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais. Code : SNKDESIGN50",
+    showButton: true,
   },
   {
     image: lookbook3,
