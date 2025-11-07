@@ -21,7 +21,6 @@ const Shop = () => {
   
   // Filters
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 2000]);
   const [showOnlyInStock, setShowOnlyInStock] = useState(false);
@@ -42,7 +41,6 @@ const Shop = () => {
   }, []);
 
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  const colors = ["Noir", "Blanc", "Rouge", "Bleu", "Rose", "Beige", "Vert", "Ivoire", "Argent", "Or"];
   const categories = ["Robes de Soirée", "Robes Cocktail", "Robes Maxi", "Robes Midi", "Robes Mini"];
 
   // Apply filters
@@ -83,7 +81,6 @@ const Shop = () => {
 
   const hasActiveFilters = 
     selectedSizes.length > 0 || 
-    selectedColors.length > 0 || 
     selectedCategories.length > 0 ||
     priceRange[0] !== 0 || 
     priceRange[1] !== 2000 ||
@@ -91,7 +88,6 @@ const Shop = () => {
 
   const resetFilters = () => {
     setSelectedSizes([]);
-    setSelectedColors([]);
     setSelectedCategories([]);
     setPriceRange([0, 2000]);
     setShowOnlyInStock(false);
@@ -158,33 +154,6 @@ const Shop = () => {
             >
               {size}
             </button>
-          ))}
-        </div>
-      </div>
-
-      <Separator />
-
-      {/* Color Filter */}
-      <div>
-        <h3 className="text-xs uppercase tracking-widest font-medium mb-4">Couleur</h3>
-        <div className="space-y-2">
-          {colors.map((color) => (
-            <div key={color} className="flex items-center space-x-2">
-              <Checkbox
-                id={`color-${color}`}
-                checked={selectedColors.includes(color)}
-                onCheckedChange={(checked) => {
-                  if (checked) {
-                    setSelectedColors([...selectedColors, color]);
-                  } else {
-                    setSelectedColors(selectedColors.filter((c) => c !== color));
-                  }
-                }}
-              />
-              <Label htmlFor={`color-${color}`} className="text-sm cursor-pointer">
-                {color}
-              </Label>
-            </div>
           ))}
         </div>
       </div>

@@ -12,6 +12,8 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import kimonoRoyaleImg from "@/assets/kimono-royale-1.jpg";
+import ensembleHeroImg from "@/assets/ensemble-hero.jpg";
 
 const Collection = () => {
   const { handle } = useParams<{ handle: string }>();
@@ -23,7 +25,6 @@ const Collection = () => {
   
   // Filters
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
 
   useEffect(() => {
@@ -50,16 +51,20 @@ const Collection = () => {
     "jewelry": "Accessoires",
   };
 
+  const collectionImages: { [key: string]: string } = {
+    "robes": kimonoRoyaleImg,
+    "ensembles": ensembleHeroImg,
+  };
+
   const collectionTitle = collectionTitles[handle || ""] || handle?.toUpperCase() || "Collection";
 
   const sizes = ["XS", "S", "M", "L", "XL"];
-  const colors = ["Noir", "Blanc", "Rouge", "Bleu", "Rose", "Beige"];
 
   const filteredProducts = products.filter((product) => {
     const price = parseFloat(product.node.priceRange.minVariantPrice.amount);
     const matchesPrice = price >= priceRange[0] && price <= priceRange[1];
     
-    if (selectedSizes.length === 0 && selectedColors.length === 0) {
+    if (selectedSizes.length === 0) {
       return matchesPrice;
     }
     
@@ -110,33 +115,6 @@ const Collection = () => {
         </div>
       </div>
 
-      {/* Color Filter */}
-      <div>
-        <h3 className="text-xs uppercase tracking-widest font-medium mb-4">Couleur</h3>
-        <div className="space-y-3">
-          {colors.map((color) => (
-            <div key={color} className="flex items-center space-x-2">
-              <Checkbox
-                id={`color-${color}`}
-                checked={selectedColors.includes(color)}
-                onCheckedChange={(checked) => {
-                  if (checked) {
-                    setSelectedColors([...selectedColors, color]);
-                  } else {
-                    setSelectedColors(selectedColors.filter((c) => c !== color));
-                  }
-                }}
-              />
-              <Label
-                htmlFor={`color-${color}`}
-                className="text-sm cursor-pointer"
-              >
-                {color}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Price Filter */}
       <div>
@@ -157,12 +135,11 @@ const Collection = () => {
       </div>
 
       {/* Reset Filters */}
-      {(selectedSizes.length > 0 || selectedColors.length > 0 || priceRange[0] !== 0 || priceRange[1] !== 1000) && (
+      {(selectedSizes.length > 0 || priceRange[0] !== 0 || priceRange[1] !== 1000) && (
         <Button
           variant="outline"
           onClick={() => {
             setSelectedSizes([]);
-            setSelectedColors([]);
             setPriceRange([0, 1000]);
           }}
           className="w-full uppercase tracking-wider text-xs"
@@ -179,7 +156,16 @@ const Collection = () => {
 
       {/* Hero Section */}
       <section className="relative h-[400px] bg-secondary/5 flex items-center justify-center overflow-hidden">
-        {products[0] && (
+        {(handle && collectionImages[handle]) ? (
+          <>
+            <img
+              src={collectionImages[handle]}
+              alt={collectionTitle}
+              className="absolute inset-0 w-full h-full object-cover opacity-40"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40" />
+          </>
+        ) : products[0] && (
           <>
             <img
               src={products[0].node.images.edges[0]?.node.url}
