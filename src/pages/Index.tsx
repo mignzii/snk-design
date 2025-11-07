@@ -149,36 +149,56 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Black Friday Promotion */}
-      <section className="py-20 bg-gradient-to-br from-rose-500/5 to-amber-500/5">
+      {/* Archive Sales Section */}
+      <section className="py-12 sm:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8 animate-fade-in">
-              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-4">
-                Black Friday
-              </p>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-6">
-                Votre robe coup de cœur,<br />
-                à prix Black Friday.
-              </h2>
-              <div className="h-px w-24 bg-primary mx-auto my-8" />
-              <p className="text-lg md:text-xl text-muted-foreground mb-4">
-                Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.
-              </p>
-              <div className="inline-block bg-foreground text-background px-6 py-3 rounded-sm mb-8">
-                <p className="text-sm tracking-[0.2em] uppercase">
-                  Code : <span className="font-semibold">SNKDESIGN50</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* First Archive Sale Card */}
+            <Link to="/shop" className="group relative aspect-[3/4] overflow-hidden">
+              <img 
+                src={products[4]?.node.images.edges[0]?.node.url || ""}
+                alt="Archive Sale Drop II"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-[0.2em] uppercase mb-4">
+                  Archive Sale
+                </h2>
+                <p className="text-sm sm:text-base tracking-[0.3em] uppercase mb-8">
+                  Drop II
                 </p>
+                <Button 
+                  variant="outline" 
+                  className="border-2 border-white text-white hover:bg-white hover:text-black transition-all uppercase tracking-[0.2em] text-xs px-8 py-6"
+                >
+                  View Collection
+                </Button>
               </div>
-            </div>
-            
-            <Link to="/shop">
-              <Button 
-                variant="default"
-                className="uppercase tracking-[0.2em] text-xs px-12 h-14 hover:scale-105 transition-transform"
-              >
-                Profitez de l'offre
-              </Button>
+            </Link>
+
+            {/* Second Archive Sale Card */}
+            <Link to="/shop" className="group relative aspect-[3/4] overflow-hidden">
+              <img 
+                src={products[5]?.node.images.edges[0]?.node.url || ""}
+                alt="Archive Sale Drop II"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-[0.2em] uppercase mb-4">
+                  Archive Sale
+                </h2>
+                <p className="text-sm sm:text-base tracking-[0.3em] uppercase mb-8">
+                  Drop II
+                </p>
+                <Button 
+                  variant="outline" 
+                  className="border-2 border-white text-white hover:bg-white hover:text-black transition-all uppercase tracking-[0.2em] text-xs px-8 py-6"
+                >
+                  Shop Now
+                </Button>
+              </div>
             </Link>
           </div>
         </div>
