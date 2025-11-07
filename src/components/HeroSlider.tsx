@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import lookbook1 from "@/assets/lookbook-1.jpg";
 import lookbook2 from "@/assets/lookbook-2.jpg";
 import lookbook3 from "@/assets/lookbook-3.jpg";
+import hero5 from "@/assets/hero-5.jpg";
 
 const slides = [
   {
@@ -20,6 +21,12 @@ const slides = [
   },
   {
     image: lookbook3,
+    title: "BLACK FRIDAY",
+    subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais. Code : SNKDESIGN50",
+    showButton: true,
+  },
+  {
+    image: hero5,
     title: "BLACK FRIDAY",
     subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais. Code : SNKDESIGN50",
     showButton: true,
