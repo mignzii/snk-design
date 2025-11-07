@@ -282,9 +282,9 @@ const ProductDetail = () => {
                   Livraison & Retours
                 </AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground leading-relaxed space-y-2">
-                  <p>Livraison gratuite dès 100€ d'achat</p>
-                  <p>Retours gratuits sous 30 jours</p>
-                  <p>Livraison en 3-5 jours ouvrés</p>
+                  <p>Livraison gratuite à l'achat de deux articles</p>
+                  <p>Retour à vos frais</p>
+                  <p>Délai de livraison : 3 à 5 jours ouvrables</p>
                 </AccordionContent>
               </AccordionItem>
 
