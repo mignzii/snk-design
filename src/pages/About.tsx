@@ -48,45 +48,49 @@ export default function About() {
               
               <div className="text-center space-y-6 animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-light tracking-wide">
-                  SNKDESIGN
+                  L'histoire de SNK DESIGN
                 </h2>
-                <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground">
-                  Haute Couture Africaine
-                </p>
                 
                 <div className="h-px w-24 bg-primary mx-auto my-8" />
                 
-                <div className="space-y-6 text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                <div className="space-y-6 text-muted-foreground leading-relaxed max-w-3xl mx-auto text-left">
                   <p className="text-lg">
-                    SNK-Design incarne l'excellence de la haute couture africaine, 
-                    où chaque création est une œuvre d'art pensée pour célébrer la 
-                    beauté et l'élégance de la femme africaine moderne.
+                    SNK DESIGN est bien plus qu'une marque de vêtements. C'est l'histoire d'une famille de créateurs déterminés, portée par la passion, la créativité et la volonté de s'affirmer dans un nouveau pays.
                   </p>
+                  
                   <p>
-                    Fondée sur les valeurs d'authenticité, d'élégance intemporelle et de 
-                    fierté culturelle, notre maison s'attache à créer des pièces exceptionnelles 
-                    qui transcendent les frontières pour offrir un style résolument unique, 
-                    ancré dans l'héritage africain.
+                    Il y a quelques années, un frère passionné par la mode masculine a lancé la marque au Sénégal. Rapidement, sa sœur a ajouté une touche féminine, donnant naissance à des collections uniques pour femmes, alliant modernité et élégance. Ce mélange de visions a été le point de départ d'une aventure extraordinaire : créer des vêtements qui racontent une histoire, reflètent une identité et célèbrent la diversité.
                   </p>
+                  
                   <p>
-                    Notre atelier perpétue les techniques ancestrales de la couture africaine, 
-                    tout en intégrant les innovations textiles les plus récentes. Chaque robe 
-                    est façonnée avec une attention méticuleuse aux détails, des tissus africains 
-                    soigneusement sélectionnés aux finitions parfaites qui racontent une histoire.
+                    Il y a trois ans, la famille a quitté le Sénégal pour s'installer au Canada, apportant avec elle son savoir-faire, ses rêves et son énergie créative. L'immigration a été un défi, mais aussi une source d'inspiration : chaque vêtement SNK DESIGN porte en lui l'audace et la détermination nécessaires pour réussir dans un nouveau pays, tout en restant fidèle à ses racines.
                   </p>
-                  <p>
-                    Tout a commencé par une passion pour les textiles africains et une vision : 
-                    révéler la beauté intemporelle de la femme africaine à travers des créations 
-                    qui honorent son héritage tout en embrassant la modernité. Chaque collection 
-                    puise son inspiration dans la richesse des cultures africaines, des motifs 
-                    traditionnels aux couleurs vibrantes qui célèbrent notre continent.
+                  
+                  <p className="font-semibold text-foreground">
+                    Aujourd'hui, SNK DESIGN est portée par une famille unie et complémentaire :
                   </p>
+                  
+                  <ul className="space-y-3 pl-6">
+                    <li className="list-disc">
+                      <strong className="text-foreground">La maman</strong> supervise le choix des tissus et les ateliers de confection au Canada et au Sénégal, veillant à ce que chaque pièce soit réalisée avec soin et précision.
+                    </li>
+                    <li className="list-disc">
+                      <strong className="text-foreground">L'une des sœurs</strong> est la designer principale, dessinant chaque modèle pour créer des vêtements uniques, modernes et audacieux.
+                    </li>
+                    <li className="list-disc">
+                      <strong className="text-foreground">L'autre sœur</strong> gère le marketing, les ventes et l'administration, s'assurant que la marque touche et inspire ses clientes.
+                    </li>
+                    <li className="list-disc">
+                      <strong className="text-foreground">Le frère</strong>, expert-comptable, garantit la solidité financière de l'entreprise.
+                    </li>
+                  </ul>
+                  
                   <p>
-                    Chez SNK-Design, nous croyons que chaque femme mérite de se sentir exceptionnelle. 
-                    Nos créations ne sont pas simplement des vêtements, mais des expressions de 
-                    confiance, d'élégance et de fierté culturelle. Nous travaillons avec des 
-                    artisans locaux pour préserver les savoir-faire ancestraux tout en créant 
-                    des opportunités économiques au sein de nos communautés.
+                    Chaque création SNK DESIGN est une célébration du métissage culturel, de l'originalité et de la modernité. Nos robes et vêtements uniques reflètent notre héritage afro et notre vision contemporaine, tout en s'adaptant à toutes les silhouettes et à tous les styles.
+                  </p>
+                  
+                  <p className="text-lg font-medium text-foreground">
+                    SNK DESIGN, c'est l'histoire d'une famille d'immigrants qui a osé rêver grand, qui transforme chaque défi en opportunité, et qui crée des vêtements authentiques, élégants et inspirants, pour toutes les femmes qui veulent se sentir confiantes et uniques.
                   </p>
                 </div>
               </div>
