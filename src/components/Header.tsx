@@ -81,16 +81,16 @@ export const Header = () => {
             </div>
 
             {/* Center - Logo */}
-            <Link to="/" className="absolute left-1/2 -translate-x-1/2 px-1 sm:px-2">
-              <h1 className="text-sm sm:text-lg md:text-3xl font-bold tracking-[0.08em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK DESIGN</h1>
+            <Link to="/" className="absolute left-1/2 -translate-x-1/2">
+              <h1 className="text-xs sm:text-lg md:text-3xl font-bold tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK DESIGN</h1>
             </Link>
 
             {/* Right - Icons */}
-            <div className="flex items-center gap-0 md:gap-1 flex-1 justify-end">
+            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-1 flex-1 justify-end">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
-                    <Globe className="h-4 w-4" />
+                  <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 hidden sm:flex">
+                    <Globe className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
@@ -103,21 +103,21 @@ export const Header = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => setSearchOpen(true)}>
-                <Search className="h-4 w-4" />
+              <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0" onClick={() => setSearchOpen(true)}>
+                <Search className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </Button>
               
               <Link to="/wishlist">
-                <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0 relative">
-                  <Heart className="h-4 w-4" />
+                <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 relative">
+                  <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   {wishlistCount > 0 && <Badge className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-[10px]">
                       {wishlistCount}
                     </Badge>}
                 </Button>
               </Link>
               
-              <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
-                <User className="h-4 w-4" />
+              <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 hidden sm:flex">
+                <User className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </Button>
               <CartDrawer />
             </div>
