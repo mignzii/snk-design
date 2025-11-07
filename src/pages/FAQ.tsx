@@ -10,36 +10,114 @@ import {
 export default function FAQ() {
   const faqs = [
     {
-      question: "Quelle est la politique de retour ?",
-      answer: "Nous acceptons les retours dans les 14 jours suivant la réception de votre commande. Les articles doivent être non portés, avec leurs étiquettes d'origine. Pour initier un retour, veuillez nous contacter à contact@snkdesign.com avec votre numéro de commande."
+      question: "Est-ce que la tenue sera à ma taille ?",
+      answer: (
+        <>
+          <p className="mb-3">Toutes nos robes offrent la possibilité de choisir votre taille et de préciser votre longueur, afin d'assurer un ajustement précis et confortable.</p>
+          <p className="mb-3">Certaines de nos tenues sont également équipées de ceintures intérieures discrètes, conçues pour mouler la taille à la perfection tout en restant invisibles. Ces ceintures permettent à la robe de s'adapter harmonieusement à chaque silhouette.</p>
+          <p>Les modèles dotés de ce système portent une mention « ajustable » au bas de leur fiche produit.</p>
+        </>
+      )
     },
     {
-      question: "Comment choisir la bonne taille ?",
-      answer: "Nous vous recommandons de consulter notre guide des tailles disponible sur chaque page produit. Si vous êtes entre deux tailles, nous conseillons de choisir la taille supérieure. Pour des mesures personnalisées ou des questions spécifiques, n'hésitez pas à nous contacter."
+      question: "Returns & Refunds (Retours et remboursements)",
+      answer: (
+        <>
+          <p className="mb-3">Nous acceptons les retours dans un délai de 10 jours après réception de la commande, aux frais du client.</p>
+          <p className="mb-3 font-semibold">Les articles doivent être :</p>
+          <ul className="list-disc pl-5 mb-3 space-y-1">
+            <li>Non portés, non lavés et sans parfum ajouté.</li>
+            <li>Conservés dans leur emballage d'origine (packaging SNK Design).</li>
+          </ul>
+          <p className="mb-3">Une fois la tenue reçue et vérifiée, un remboursement ou échange sera effectué selon votre choix.</p>
+          <p className="font-semibold">Note : Les articles en promotion ou soldés (ex. Black Friday) ne sont pas remboursables, mais peuvent être échangés.</p>
+        </>
+      )
     },
     {
-      question: "Quels sont les délais de livraison ?",
-      answer: "Les délais de livraison varient selon votre localisation. En général, comptez 3-5 jours ouvrables pour la France métropolitaine, 7-10 jours pour l'Europe, et 10-15 jours pour le reste du monde. Vous recevrez un numéro de suivi dès l'expédition de votre commande."
+      question: "Shipping (Livraison)",
+      answer: (
+        <>
+          <p className="mb-3">Les livraisons standards prennent <strong>3 à 5 jours ouvrables</strong> à partir de la date d'expédition.</p>
+          <p className="mb-2">Un service express (24 à 48 h) est également disponible dans les régions suivantes :</p>
+          <ul className="list-disc pl-5 mb-3 space-y-1">
+            <li>Montréal</li>
+            <li>Ottawa / Gatineau</li>
+            <li>Québec City</li>
+          </ul>
+          <p className="mb-3">Ce service est offert moyennant 15 $ de frais supplémentaires.</p>
+          <p className="font-semibold">La livraison est gratuite dès l'achat de deux articles ou plus.</p>
+        </>
+      )
     },
     {
-      question: "Quels modes de paiement sont acceptés ?",
-      answer: "Nous acceptons les cartes de crédit (Visa, Mastercard, American Express), PayPal, et les virements bancaires. Tous les paiements sont sécurisés et cryptés pour garantir la protection de vos informations."
+      question: "Payments (Paiements)",
+      answer: (
+        <>
+          <p className="mb-3">Nous acceptons les paiements par :</p>
+          <ul className="list-disc pl-5 mb-3 space-y-1">
+            <li>Carte de crédit (Visa, MasterCard, American Express)</li>
+            <li>Apple Pay</li>
+            <li>PayPal</li>
+          </ul>
+          <p>Tous les paiements sont 100 % sécurisés et traités en dollars canadiens (CAD) via des plateformes certifiées.</p>
+        </>
+      )
     },
     {
-      question: "Puis-je commander une création sur mesure ?",
-      answer: "Absolument ! Nous proposons un service de création sur mesure pour des pièces uniques adaptées à vos mensurations et préférences. Contactez-nous pour discuter de votre projet et recevoir un devis personnalisé."
+      question: "Orders (Commandes)",
+      answer: (
+        <>
+          <p className="mb-3">Une fois votre commande validée, vous recevrez un courriel de confirmation contenant le récapitulatif de votre achat.</p>
+          <p className="mb-3">Lorsque votre commande est expédiée, un numéro de suivi vous est envoyé.</p>
+          <p className="mb-3">Pour modifier ou annuler une commande, contactez-nous rapidement à <a href="mailto:snkdesign11@gmail.com" className="text-primary hover:underline">snkdesign11@gmail.com</a> avant l'expédition.</p>
+          <p className="font-semibold">Après expédition, les modifications ne sont plus possibles.</p>
+        </>
+      )
     },
     {
-      question: "Comment entretenir mes vêtements SNK-Design ?",
-      answer: "Nos créations étant confectionnées avec des tissus africains délicats, nous recommandons un nettoyage à sec pour préserver leur qualité. Si vous préférez laver à la main, utilisez de l'eau froide et un détergent doux, puis séchez à plat à l'ombre."
+      question: "Help with My Order (Aide pour ma commande)",
+      answer: (
+        <>
+          <p className="mb-3">Si vous avez reçu un article incorrect, une mauvaise taille ou un colis endommagé, veuillez :</p>
+          <ul className="list-disc pl-5 mb-3 space-y-1">
+            <li>Envoyer un courriel à <a href="mailto:snkdesign11@gmail.com" className="text-primary hover:underline">snkdesign11@gmail.com</a></li>
+            <li>Indiquer votre numéro de commande</li>
+            <li>Joindre, si possible, une photo du problème</li>
+          </ul>
+          <p>Notre équipe vous répondra dans un délai de 24 à 48 heures ouvrables.</p>
+        </>
+      )
     },
     {
-      question: "Proposez-vous la livraison internationale ?",
-      answer: "Oui, nous expédions dans le monde entier ! Les frais de livraison sont calculés automatiquement lors du passage de commande en fonction de votre destination. La livraison est gratuite pour toute commande supérieure à 100€ en France."
+      question: "Check Gift Card Balance (Solde des cartes-cadeaux)",
+      answer: (
+        <>
+          <p className="mb-3">Vous pouvez vérifier le solde de votre carte-cadeau directement au moment du paiement, en saisissant le code dans la section « Carte cadeau / Code promo ».</p>
+          <p className="mb-3">Le montant restant s'affichera automatiquement.</p>
+          <p>Les cartes-cadeaux sont valables <strong>5 mois</strong> après la date d'achat et ne sont pas remboursables.</p>
+        </>
+      )
     },
     {
-      question: "Comment puis-je suivre ma commande ?",
-      answer: "Une fois votre commande expédiée, vous recevrez un email avec un numéro de suivi. Vous pourrez suivre l'acheminement de votre colis en temps réel via le lien fourni dans l'email de confirmation d'expédition."
+      question: "Payments & General Questions (Paiements et questions générales)",
+      answer: (
+        <>
+          <p className="mb-3">Tous les paiements sont sécurisés et confidentiels.</p>
+          <p className="mb-3">Les codes promo doivent être appliqués avant de valider le paiement.</p>
+          <p className="mb-3">Si un article est temporairement en rupture de stock, vous pouvez activer une alerte de retour directement sur sa page.</p>
+          <p>Pour toute autre question, contactez-nous à <a href="mailto:snkdesign11@gmail.com" className="text-primary hover:underline">snkdesign11@gmail.com</a>.</p>
+        </>
+      )
+    },
+    {
+      question: "Get More Information (En savoir plus)",
+      answer: (
+        <>
+          <p className="mb-3">Pour découvrir notre histoire, notre vision et notre démarche créative, consultez la page « À propos ».</p>
+          <p>Vous pouvez également suivre nos nouveautés et lancements exclusifs sur Instagram : <a href="https://instagram.com/snk_design1" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">@snk_design1</a></p>
+        </>
+      )
     }
   ];
 
@@ -95,7 +173,7 @@ export default function FAQ() {
                   Notre équipe est là pour vous aider. N'hésitez pas à nous contacter.
                 </p>
                 <a 
-                  href="mailto:contact@snkdesign.com"
+                  href="mailto:snkdesign11@gmail.com"
                   className="inline-block px-8 py-3 bg-foreground text-background hover:bg-foreground/90 transition-colors tracking-[0.2em] text-xs uppercase rounded-sm"
                 >
                   Nous Contacter
