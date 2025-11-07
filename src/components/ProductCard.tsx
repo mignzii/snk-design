@@ -25,7 +25,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const { node } = product;
   const price = parseFloat(node.priceRange.minVariantPrice.amount);
   const formattedPrice = price.toFixed(2);
-  const currency = node.priceRange.minVariantPrice.currencyCode;
+  const currency = "CAD"; // Force CAD display
   
   const images = node.images.edges.map(edge => edge.node.url);
   const currentImage = images[imageIndex] || images[0];

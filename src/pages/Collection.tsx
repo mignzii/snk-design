@@ -150,8 +150,8 @@ const Collection = () => {
             className="w-full"
           />
           <div className="flex items-center justify-between text-sm text-muted-foreground">
-            <span>€{priceRange[0]}</span>
-            <span>€{priceRange[1]}</span>
+            <span>CAD ${priceRange[0]}</span>
+            <span>CAD ${priceRange[1]}</span>
           </div>
         </div>
       </div>

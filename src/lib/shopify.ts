@@ -217,6 +217,8 @@ export interface CartItem {
     name: string;
     value: string;
   }>;
+  customSize?: string;
+  customLength?: string;
 }
 
 export async function createStorefrontCheckout(items: CartItem[]): Promise<string> {

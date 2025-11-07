@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
-import { X } from "lucide-react";
+import { X, Info } from "lucide-react";
 
 interface QuickViewModalProps {
   product: ShopifyProduct | null;
@@ -16,12 +18,15 @@ export const QuickViewModal = ({ product, open, onOpenChange }: QuickViewModalPr
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [customSize, setCustomSize] = useState("");
+  const [customLength, setCustomLength] = useState("");
   const addItem = useCartStore((state) => state.addItem);
 
   if (!product) return null;
 
   const { node } = product;
   const price = parseFloat(node.priceRange.minVariantPrice.amount);
+  const currency = "CAD"; // Force CAD display
   const images = node.images.edges.map(edge => edge.node.url);
   
   const sizeOption = node.options.find(opt => opt.name === "Taille");
@@ -40,9 +45,11 @@ export const QuickViewModal = ({ product, open, onOpenChange }: QuickViewModalPr
       product,
       variantId: variant.id,
       variantTitle: variant.title,
-      price: variant.price,
+      price: { amount: variant.price.amount, currencyCode: currency },
       quantity: 1,
       selectedOptions: variant.selectedOptions || [],
+      customSize: customSize || undefined,
+      customLength: customLength || undefined,
     };
 
     addItem(cartItem);
@@ -97,7 +104,7 @@ export const QuickViewModal = ({ product, open, onOpenChange }: QuickViewModalPr
             <div>
               <h2 className="text-2xl font-light tracking-wide mb-2">{node.title}</h2>
               <p className="text-2xl font-medium">
-                {node.priceRange.minVariantPrice.currencyCode} {price.toFixed(2)}
+                {currency} {price.toFixed(2)}
               </p>
             </div>
 
@@ -105,52 +112,50 @@ export const QuickViewModal = ({ product, open, onOpenChange }: QuickViewModalPr
               {node.description}
             </p>
 
-            {/* Size Selection */}
-            {sizeOption && sizeOption.values.length > 0 && (
-              <div>
-                <label className="text-xs uppercase tracking-widest font-medium mb-3 block">
-                  Taille
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {sizeOption.values.map((size) => (
-                    <Button
-                      key={size}
-                      variant={selectedSize === size ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedSize(size)}
-                      className="min-w-[3rem]"
-                    >
-                      {size}
-                    </Button>
-                  ))}
+            {/* Taille unique info */}
+            <div className="space-y-4 p-4 bg-muted/30 rounded-md border border-border/50">
+              <div className="flex items-start gap-3">
+                <Info className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <div className="space-y-2">
+                  <p className="text-sm font-medium">Taille Unique</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Les robes sont en taille unique, mais contiennent des ceintures intérieures ajustables qui s'adaptent à la morphologie de chaque personne.
+                  </p>
                 </div>
               </div>
-            )}
-
-            {/* Color Selection */}
-            {colorOption && colorOption.values.length > 0 && (
-              <div>
-                <label className="text-xs uppercase tracking-widest font-medium mb-3 block">
-                  Couleur
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {colorOption.values.map((color) => (
-                    <Button
-                      key={color}
-                      variant={selectedColor === color ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedColor(color)}
-                    >
-                      {color}
-                    </Button>
-                  ))}
+              
+              {/* Custom size and length fields */}
+              <div className="space-y-4 pt-2 border-t border-border/50">
+                <div className="space-y-2">
+                  <Label htmlFor="quickViewSize" className="text-xs uppercase tracking-wider font-light">
+                    Votre taille (facultatif)
+                  </Label>
+                  <Input
+                    id="quickViewSize"
+                    placeholder="Ex: S, M, L, 38, 40..."
+                    value={customSize}
+                    onChange={(e) => setCustomSize(e.target.value)}
+                    className="text-sm"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="quickViewLength" className="text-xs uppercase tracking-wider font-light">
+                    Longueur souhaitée (facultatif)
+                  </Label>
+                  <Input
+                    id="quickViewLength"
+                    placeholder="Ex: 120cm, longueur cheville..."
+                    value={customLength}
+                    onChange={(e) => setCustomLength(e.target.value)}
+                    className="text-sm"
+                  />
                 </div>
               </div>
-            )}
+            </div>
 
             <Button
               onClick={handleAddToCart}
-              disabled={!selectedSize && sizeOption && sizeOption.values.length > 0}
               className="w-full h-12 uppercase tracking-wider text-xs"
             >
               Ajouter au panier

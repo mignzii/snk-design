@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ShoppingCart, Heart, ArrowLeft, Loader2, Ruler, AlertCircle } from "lucide-react";
+import { ShoppingCart, Heart, ArrowLeft, Loader2, Ruler, AlertCircle, Info } from "lucide-react";
 import { storefrontApiRequest, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { useRecentlyViewedStore } from "@/stores/recentlyViewedStore";
@@ -15,6 +15,8 @@ import { SizeGuideModal } from "@/components/SizeGuideModal";
 import { RelatedProductsSection } from "@/components/RelatedProductsSection";
 import { RecentlyViewedSection } from "@/components/RecentlyViewedSection";
 import { ProductBenefitsSection } from "@/components/ProductBenefitsSection";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
 const PRODUCT_QUERY = `
@@ -71,6 +73,8 @@ const ProductDetail = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
+  const [customSize, setCustomSize] = useState("");
+  const [customLength, setCustomLength] = useState("");
   const addItem = useCartStore((state) => state.addItem);
   const addRecentlyViewed = useRecentlyViewedStore((state) => state.addItem);
 
@@ -119,7 +123,7 @@ const ProductDetail = () => {
   const { node } = product;
   const variant = node.variants.edges[selectedVariant]?.node;
   const price = parseFloat(variant?.price.amount || node.priceRange.minVariantPrice.amount);
-  const currency = variant?.price.currencyCode || node.priceRange.minVariantPrice.currencyCode;
+  const currency = "CAD"; // Force CAD display
   
   // Check if low stock (mock - you'd get this from inventory in real scenario)
   const availableVariantsCount = node.variants.edges.filter(v => v.node.availableForSale).length;
@@ -132,9 +136,11 @@ const ProductDetail = () => {
       product,
       variantId: variant.id,
       variantTitle: variant.title,
-      price: variant.price,
+      price: { amount: price.toString(), currencyCode: currency },
       quantity: 1,
       selectedOptions: variant.selectedOptions || [],
+      customSize: customSize || undefined,
+      customLength: customLength || undefined,
     };
 
     addItem(cartItem);
@@ -208,55 +214,47 @@ const ProductDetail = () => {
               )}
             </div>
 
-            {/* Size/Color Selection */}
-            {node.options.length > 0 && (
-              <div className="space-y-6">
-                {node.options.map((option) => (
-                  <div key={option.name}>
-                    <div className="flex items-center justify-between mb-3">
-                      <label className="text-xs uppercase tracking-widest font-light">
-                        {option.name}
-                      </label>
-                      {option.name === "Taille" && (
-                        <Button
-                          variant="link"
-                          size="sm"
-                          onClick={() => setSizeGuideOpen(true)}
-                          className="text-xs h-auto p-0 uppercase tracking-wider"
-                        >
-                          <Ruler className="h-3 w-3 mr-1" />
-                          Guide des tailles
-                        </Button>
-                      )}
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {node.variants.edges.map((v, idx) => {
-                        const optionValue = v.node.selectedOptions.find(
-                          (o) => o.name === option.name
-                        )?.value;
-                        
-                        return (
-                          <button
-                            key={idx}
-                            onClick={() => setSelectedVariant(idx)}
-                            disabled={!v.node.availableForSale}
-                            className={`px-6 py-2 text-sm uppercase tracking-wider transition-all border ${
-                              selectedVariant === idx
-                                ? "bg-primary text-primary-foreground border-primary"
-                                : v.node.availableForSale
-                                ? "border-border hover:border-primary"
-                                : "border-border opacity-30 cursor-not-allowed"
-                            }`}
-                          >
-                            {optionValue}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
+            {/* Taille unique info */}
+            <div className="space-y-4 p-4 bg-muted/30 rounded-md border border-border/50">
+              <div className="flex items-start gap-3">
+                <Info className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <div className="space-y-2">
+                  <p className="text-sm font-medium">Taille Unique</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Les robes sont en taille unique, mais contiennent des ceintures intérieures ajustables qui s'adaptent à la morphologie de chaque personne.
+                  </p>
+                </div>
               </div>
-            )}
+              
+              {/* Custom size and length fields */}
+              <div className="space-y-4 pt-2 border-t border-border/50">
+                <div className="space-y-2">
+                  <Label htmlFor="customSize" className="text-xs uppercase tracking-wider font-light">
+                    Votre taille (facultatif)
+                  </Label>
+                  <Input
+                    id="customSize"
+                    placeholder="Ex: S, M, L, 38, 40..."
+                    value={customSize}
+                    onChange={(e) => setCustomSize(e.target.value)}
+                    className="text-sm"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="customLength" className="text-xs uppercase tracking-wider font-light">
+                    Longueur souhaitée (facultatif)
+                  </Label>
+                  <Input
+                    id="customLength"
+                    placeholder="Ex: 120cm, longueur cheville..."
+                    value={customLength}
+                    onChange={(e) => setCustomLength(e.target.value)}
+                    className="text-sm"
+                  />
+                </div>
+              </div>
+            </div>
 
             {/* Add to Cart */}
             <Button
