@@ -66,7 +66,7 @@ export const Header = () => {
       
       <header className={cn("sticky top-0 z-50 transition-all duration-300 bg-background border-b", isScrolled && "shadow-sm")}>
         <div className="container mx-auto px-2 md:px-4">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 gap-2">
+          <div className="grid grid-cols-[1fr_auto_1fr] lg:flex items-center h-16 gap-2 lg:justify-between relative">
             {/* Left - Menu button on mobile, navigation on desktop */}
             <div className="flex items-center justify-start">
               <Button variant="ghost" size="icon" className="lg:hidden h-8 w-8 shrink-0" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -81,12 +81,12 @@ export const Header = () => {
             </div>
 
             {/* Center - Logo */}
-            <Link to="/" className="flex justify-center">
+            <Link to="/" className="flex justify-center lg:absolute lg:left-1/2 lg:-translate-x-1/2">
               <h1 className="text-xs sm:text-lg md:text-3xl font-bold tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK DESIGN</h1>
             </Link>
 
             {/* Right - Icons */}
-            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-1 justify-end">
+            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-1 justify-end lg:relative lg:z-10">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 hidden sm:flex">
