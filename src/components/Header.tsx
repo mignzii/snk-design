@@ -81,7 +81,7 @@ export const Header = () => {
             </div>
 
             {/* Center - Logo */}
-            <Link to="/" className="flex justify-center">
+            <Link to="/" className="flex justify-center lg:hidden">
               <h1 className="text-xs sm:text-lg md:text-3xl font-bold tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.2em] uppercase whitespace-nowrap">SNK DESIGN</h1>
             </Link>
 
