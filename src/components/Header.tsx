@@ -66,7 +66,7 @@ export const Header = () => {
       
       <header className={cn("sticky top-0 z-50 transition-all duration-300 bg-background border-b", isScrolled && "shadow-sm")}>
         <div className="container mx-auto px-2 md:px-4">
-          <div className="grid grid-cols-[1fr_auto_1fr] lg:grid-cols-[1fr_auto] items-center h-16 gap-2">
+          <div className="grid grid-cols-[1fr_auto_1fr] lg:flex lg:justify-between items-center h-16 gap-2">
             {/* Left - Menu button on mobile, navigation on desktop */}
             <div className="flex items-center justify-start">
               <Button variant="ghost" size="icon" className="lg:hidden h-8 w-8 shrink-0" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
