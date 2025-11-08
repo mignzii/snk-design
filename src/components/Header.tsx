@@ -86,7 +86,7 @@ export const Header = () => {
             </Link>
 
             {/* Right - Icons */}
-            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-1 justify-end">
+            <div className="flex items-center gap-1 sm:gap-1 md:gap-1 justify-end">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0">
