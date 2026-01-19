@@ -14,7 +14,11 @@ import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2, Tag } from "l
 import { useCartStore } from "@/stores/cartStore";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-export const CartDrawer = () => {
+interface CartDrawerProps {
+  customTrigger?: React.ReactNode;
+}
+
+export const CartDrawer = ({ customTrigger }: CartDrawerProps) => {
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [promoInput, setPromoInput] = useState('');
@@ -45,14 +49,16 @@ export const CartDrawer = () => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
-          <ShoppingCart className="h-5 w-5" />
-          {totalItems > 0 && (
-            <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-accent text-accent-foreground">
-              {totalItems}
-            </Badge>
-          )}
-        </Button>
+        {customTrigger || (
+          <Button variant="ghost" size="icon" className="relative">
+            <ShoppingCart className="h-5 w-5" />
+            {totalItems > 0 && (
+              <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-accent text-accent-foreground">
+                {totalItems}
+              </Badge>
+            )}
+          </Button>
+        )}
       </SheetTrigger>
       
       <SheetContent className="w-full sm:max-w-lg flex flex-col h-full">

@@ -12,8 +12,10 @@ import {
 import { CartDrawer } from "@/components/CartDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { useWishlistStore } from "@/stores/wishlistStore";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
+
 export const Header = () => {
   const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,6 +40,9 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const menuItems = [{
+    labelKey: "menu.home",
+    href: "/"
+  }, {
     labelKey: "menu.shop",
     href: "/shop"
   }, {
@@ -87,6 +92,7 @@ export const Header = () => {
 
             {/* Right - Icons */}
             <div className="flex items-center gap-1 sm:gap-1 md:gap-1 justify-end">
+              <ThemeSwitcher />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 shrink-0">

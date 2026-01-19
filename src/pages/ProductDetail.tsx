@@ -282,7 +282,7 @@ const ProductDetail = () => {
                   Livraison & Retours
                 </AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground leading-relaxed space-y-2">
-                  <p>Livraison gratuite à l'achat de deux articles</p>
+                  <p>Livraison gratuite à l'achat de 3 articles et plus</p>
                   <p>Retour à vos frais</p>
                   <p>Délai de livraison : 3 à 5 jours ouvrables</p>
                 </AccordionContent>

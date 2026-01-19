@@ -13,6 +13,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const translations = {
   fr: {
     // Header
+    'menu.home': 'ACCUEIL',
     'menu.shop': 'BOUTIQUE',
     'menu.dresses': 'ROBES',
     'menu.sets': 'ENSEMBLES',
@@ -22,7 +23,7 @@ export const translations = {
     'menu.faq': 'FAQ',
     'header.promo1': 'Black Friday : jusqu\'à -30 % sur toute la boutique !',
     'header.promo2': 'Nouvelles collections disponibles maintenant !',
-    'header.promo3': 'Livraison gratuite dès 2 articles',
+    'header.promo3': 'Livraison gratuite dès 3 articles',
     
     // Cart
     'cart.title': 'Panier',
@@ -49,11 +50,11 @@ export const translations = {
     'product.description': 'Description',
     'product.details': 'Détails & Composition',
     'product.shipping': 'Livraison & Retours',
-    'product.shipping_text': 'Livraison gratuite à l\'achat de deux articles • Retour à vos frais • Délai de livraison : 3 à 5 jours ouvrables',
+    'product.shipping_text': 'Livraison gratuite à l\'achat de 3 articles et plus • Retour à vos frais • Délai de livraison : 3 à 5 jours ouvrables',
     
     // Features
     'features.free_shipping': 'Livraison Gratuite',
-    'features.free_shipping_desc': 'À l\'achat de deux articles',
+    'features.free_shipping_desc': 'À l\'achat de 3 articles',
     'features.returns': 'Retours',
     'features.returns_desc': 'Retour à vos frais',
     'features.delivery': 'Délai de Livraison',
@@ -69,6 +70,7 @@ export const translations = {
   },
   en: {
     // Header
+    'menu.home': 'HOME',
     'menu.shop': 'SHOP',
     'menu.dresses': 'DRESSES',
     'menu.sets': 'SETS',
@@ -78,7 +80,7 @@ export const translations = {
     'menu.faq': 'FAQ',
     'header.promo1': 'Black Friday: up to -30% off entire store!',
     'header.promo2': 'New collections available now!',
-    'header.promo3': 'Free shipping on 2+ items',
+    'header.promo3': 'Free shipping on 3+ items',
     
     // Cart
     'cart.title': 'Shopping Cart',
@@ -105,11 +107,11 @@ export const translations = {
     'product.description': 'Description',
     'product.details': 'Details & Composition',
     'product.shipping': 'Shipping & Returns',
-    'product.shipping_text': 'Free shipping on purchase of two items • Returns at your expense • Delivery time: 3 to 5 business days',
+    'product.shipping_text': 'Free shipping on purchase of 3 items or more • Returns at your expense • Delivery time: 3 to 5 business days',
     
     // Features
     'features.free_shipping': 'Free Shipping',
-    'features.free_shipping_desc': 'On purchase of two items',
+    'features.free_shipping_desc': 'On purchase of 3 items',
     'features.returns': 'Returns',
     'features.returns_desc': 'Returns at your expense',
     'features.delivery': 'Delivery Time',

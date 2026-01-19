@@ -95,6 +95,66 @@ All colors MUST be HSL.
     --input: 0 0% 20%;
     --ring: 0 0% 83.9%;
   }
+
+  .beige {
+    --background: 40 30% 94%;
+    --foreground: 30 10% 15%;
+
+    --card: 40 30% 92%;
+    --card-foreground: 30 10% 15%;
+
+    --popover: 40 30% 94%;
+    --popover-foreground: 30 10% 15%;
+
+    --primary: 30 20% 30%;
+    --primary-foreground: 40 30% 94%;
+
+    --secondary: 40 20% 85%;
+    --secondary-foreground: 30 10% 15%;
+
+    --muted: 40 20% 85%;
+    --muted-foreground: 30 10% 40%;
+
+    --accent: 40 20% 85%;
+    --accent-foreground: 30 10% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 30 10% 80%;
+    --input: 30 10% 80%;
+    --ring: 30 20% 30%;
+  }
+
+  .burgundy {
+    --background: 350 40% 15%;
+    --foreground: 0 0% 98%;
+
+    --card: 350 40% 18%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 350 40% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 45 100% 51%;
+    --primary-foreground: 350 40% 15%;
+
+    --secondary: 350 30% 25%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 350 30% 25%;
+    --muted-foreground: 350 10% 70%;
+
+    --accent: 350 30% 25%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 350 30% 30%;
+    --input: 350 30% 30%;
+    --ring: 45 100% 51%;
+  }
 }
 
 @layer base {
@@ -103,7 +163,7 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-500;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -125,6 +185,31 @@ All colors MUST be HSL.
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  /* View Transition Animation */
+  ::view-transition-group(root) {
+    animation-duration: 1.2s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-new(root) {
+    animation-name: reveal-from-left;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    animation: none;
+    z-index: -1;
+  }
+
+  @keyframes reveal-from-left {
+    from {
+      clip-path: circle(0% at 0% 100%);
+    }
+    to {
+      clip-path: circle(250% at 0% 100%);
+    }
   }
   
   .hover-lift {
