@@ -43,17 +43,17 @@ export const Header = () => {
     labelKey: "menu.home",
     href: "/"
   }, {
-    labelKey: "menu.shop",
-    href: "/shop"
+    labelKey: "menu.boubou",
+    href: "/collections/boubou"
+  }, {
+    labelKey: "menu.ramadan",
+    href: "/collections/ramadan"
   }, {
     labelKey: "menu.dresses",
     href: "/collections/robes"
   }, {
     labelKey: "menu.sets",
     href: "/collections/ensembles"
-  }, {
-    labelKey: "menu.new",
-    href: "/collections/new"
   }, {
     labelKey: "menu.accessories",
     href: "/collections/jewelry"

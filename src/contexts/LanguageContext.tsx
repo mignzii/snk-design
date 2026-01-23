@@ -14,11 +14,11 @@ export const translations = {
   fr: {
     // Header
     'menu.home': 'ACCUEIL',
-    'menu.shop': 'BOUTIQUE',
+    'menu.boubou': 'BOUBOU',
+    'menu.ramadan': 'COLLECTION RAMADAN',
     'menu.dresses': 'ROBES',
     'menu.sets': 'ENSEMBLES',
-    'menu.new': 'NEW',
-    'menu.accessories': 'ACCESSOIRES (Bientôt)',
+    'menu.accessories': 'ACCESSOIRES',
     'menu.about': 'À PROPOS',
     'menu.faq': 'FAQ',
     'header.promo1': 'Black Friday : jusqu\'à -30 % sur toute la boutique !',
@@ -71,11 +71,11 @@ export const translations = {
   en: {
     // Header
     'menu.home': 'HOME',
-    'menu.shop': 'SHOP',
+    'menu.boubou': 'BOUBOU',
+    'menu.ramadan': 'RAMADAN COLLECTION',
     'menu.dresses': 'DRESSES',
     'menu.sets': 'SETS',
-    'menu.new': 'NEW',
-    'menu.accessories': 'ACCESSORIES (Coming Soon)',
+    'menu.accessories': 'ACCESSORIES',
     'menu.about': 'ABOUT',
     'menu.faq': 'FAQ',
     'header.promo1': 'Black Friday: up to -30% off entire store!',

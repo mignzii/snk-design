@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import fashionImage from "@/assets/classy-black-dress-1.jpg";
 
 interface PromoModalProps {
   open: boolean;
@@ -68,8 +69,8 @@ export const PromoModal = ({ open, onClose }: PromoModalProps) => {
           {/* Left side - Image */}
           <div className="hidden md:block bg-muted">
             <img
-              src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&h=800&fit=crop"
-              alt="SNK Design"
+              src={fashionImage}
+              alt="SNK Design Fashion"
               className="w-full h-full object-cover"
             />
           </div>

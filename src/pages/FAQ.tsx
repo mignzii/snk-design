@@ -46,7 +46,7 @@ export default function FAQ() {
             <li>Québec City</li>
           </ul>
           <p className="mb-3">Ce service est offert moyennant 15 $ de frais supplémentaires.</p>
-          <p className="font-semibold">La livraison est gratuite dès l'achat de deux articles ou plus.</p>
+          <p className="font-semibold">La livraison est gratuite dès l'achat de trois articles ou plus.</p>
         </>
       )
     },

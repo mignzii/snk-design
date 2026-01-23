@@ -135,7 +135,7 @@ export const Footer = () => {
               </div>
               <div className="flex items-center gap-2 text-[10px] sm:text-xs text-muted-foreground whitespace-nowrap">
                 <Truck className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-                <span>Livraison gratuite +100€</span>
+                <span>Livraison gratuite dès 3 articles</span>
               </div>
             </div>
             

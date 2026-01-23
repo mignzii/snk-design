@@ -5,7 +5,7 @@ export const ProductBenefitsSection = () => {
     {
       icon: Truck,
       title: "Livraison Offerte",
-      description: "Dès 100€ d'achat"
+      description: "À l'achat de 3 articles"
     },
     {
       icon: RotateCcw,

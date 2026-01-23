@@ -4,7 +4,7 @@ const features = [
   {
     icon: Truck,
     title: "Livraison Gratuite",
-    description: "À l'achat de deux articles",
+    description: "À l'achat de trois articles",
   },
   {
     icon: RefreshCw,

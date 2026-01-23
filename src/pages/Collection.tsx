@@ -48,7 +48,8 @@ const Collection = () => {
   const collectionTitles: { [key: string]: string } = {
     "robes": "Robes",
     "ensembles": "Ensembles",
-    "new": "Nouveautés",
+    "boubou": "Boubou",
+    "ramadan": "Collection Ramadan",
     "jewelry": "Accessoires",
   };
 
@@ -267,7 +268,7 @@ const Collection = () => {
 
           {/* Products Grid */}
           <div>
-            {handle === "jewelry" ? (
+            {(handle === "jewelry" || handle === "ramadan") ? (
               <div className="flex flex-col items-center justify-center py-32 px-4">
                 <div className="max-w-2xl text-center space-y-6">
                   <h2 className="text-4xl md:text-6xl font-light tracking-[0.2em] uppercase text-foreground">
@@ -275,16 +276,20 @@ const Collection = () => {
                   </h2>
                   <div className="space-y-4">
                     <p className="text-lg md:text-xl text-muted-foreground">
-                      Notre collection exclusive d'accessoires arrive prochainement.
+                      {handle === "ramadan" 
+                        ? "Notre collection exclusive pour le Ramadan arrive prochainement."
+                        : "Notre collection exclusive d'accessoires arrive prochainement."}
                     </p>
                     <p className="text-base text-muted-foreground">
-                      Découvrez bientôt nos bijoux et accessoires raffinés, conçus pour sublimer votre style.
+                      {handle === "ramadan"
+                        ? "Préparez-vous à découvrir des pièces uniques, alliant tradition et modernité, conçues spécialement pour ce mois sacré."
+                        : "Découvrez bientôt nos bijoux et accessoires raffinés, conçus pour sublimer votre style."}
                     </p>
                   </div>
                   <div className="pt-8">
                     <Link to="/shop">
                       <Button size="lg" className="uppercase tracking-widest text-xs px-12 py-6">
-                        Découvrir nos collections
+                        Découvrir nos autres collections
                       </Button>
                     </Link>
                   </div>
