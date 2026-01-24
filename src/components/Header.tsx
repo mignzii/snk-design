@@ -136,6 +136,9 @@ export const Header = () => {
               {menuItems.map(item => <Link key={item.labelKey} to={item.href} className="block py-3 text-xs font-medium tracking-wider transition-colors hover:text-muted-foreground" onClick={() => setIsMobileMenuOpen(false)}>
                   {t(item.labelKey)}
                 </Link>)}
+              <Link to="/login" className="block py-3 text-xs font-medium tracking-wider transition-colors hover:text-muted-foreground" onClick={() => setIsMobileMenuOpen(false)}>
+                {t('common.account')}
+              </Link>
             </nav>}
         </div>
       </header>
