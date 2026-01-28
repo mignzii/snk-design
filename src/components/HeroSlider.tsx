@@ -13,18 +13,7 @@ const slides = [
     subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.",
     showButton: true,
   },
-  {
-    image: lookbook2,
-    title: "BLACK FRIDAY",
-    subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.",
-    showButton: true,
-  },
-  {
-    image: lookbook3,
-    title: "BLACK FRIDAY",
-    subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.",
-    showButton: true,
-  },
+  
   {
     image: hero5,
     title: "BLACK FRIDAY",
