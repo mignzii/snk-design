@@ -10,7 +10,7 @@ const slides = [
   {
     image: lookbook1,
     title: "BLACK FRIDAY",
-    subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.",
+    subtitle: "Votre robe coup de cœur, à  prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.",
     showButton: true,
   },
   
