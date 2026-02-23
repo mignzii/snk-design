@@ -104,7 +104,7 @@ export const HeroSlider = () => {
                 ? "bg-white w-8"
                 : "bg-white/40 w-1.5 hover:bg-white/60"
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`Go to slides ${index + 1}`}
           />
         ))}
       </div>
