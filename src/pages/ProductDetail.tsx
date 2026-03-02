@@ -18,6 +18,7 @@ import { ProductBenefitsSection } from "@/components/ProductBenefitsSection";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 const PRODUCT_QUERY = `
   query GetProduct($handle: String!) {
@@ -40,7 +41,7 @@ const PRODUCT_QUERY = `
           }
         }
       }
-      variants(first: 10) {
+      variants(first: 100) {
         edges {
           node {
             id
@@ -71,7 +72,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState<ShopifyProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [customSize, setCustomSize] = useState("");
   const [customLength, setCustomLength] = useState("");
@@ -121,8 +122,23 @@ const ProductDetail = () => {
   }
 
   const { node } = product;
-  const variant = node.variants.edges[selectedVariant]?.node;
-  const price = parseFloat(variant?.price.amount || node.priceRange.minVariantPrice.amount);
+  const options = node.options || [];
+
+  // Trouver la variante correspondant aux options sélectionnées
+  const getSelectedVariant = () => {
+    const edges = node.variants.edges;
+    if (edges.length === 0) return null;
+    const selectedEntries = Object.entries(selectedOptions).filter(([, v]) => v !== "");
+    if (selectedEntries.length === 0) return edges[0].node;
+    return edges.find(({ node: v }) =>
+      selectedEntries.every(([name, value]) =>
+        v.selectedOptions.some((opt) => opt.name === name && opt.value === value)
+      )
+    )?.node ?? null;
+  };
+
+  const variant = getSelectedVariant();
+  const price = parseFloat(variant?.price?.amount || node.priceRange.minVariantPrice.amount);
   const currency = "CAD"; // Force CAD display
   
   // Check if low stock (mock - you'd get this from inventory in real scenario)
@@ -213,6 +229,50 @@ const ProductDetail = () => {
                 </div>
               )}
             </div>
+
+            {/* Sélecteur de variantes (Taille, Couleur, etc.) */}
+            {options.length > 0 && (
+              <div className="space-y-4">
+                {options.map((option) => (
+                  <div key={option.name}>
+                    <Label className="text-xs uppercase tracking-wider font-medium text-muted-foreground mb-2 block">
+                      {option.name}
+                    </Label>
+                    <div className="flex flex-wrap gap-2">
+                      {option.values.map((value) => {
+                        const isSelected = selectedOptions[option.name] === value;
+                        const variantForValue = node.variants.edges.find(({ node: v }) =>
+                          v.selectedOptions.some((o) => o.name === option.name && o.value === value)
+                        )?.node;
+                        const isAvailable = variantForValue?.availableForSale ?? true;
+                        return (
+                          <button
+                            key={value}
+                            type="button"
+                            onClick={() =>
+                              setSelectedOptions((prev) => ({
+                                ...prev,
+                                [option.name]: value,
+                              }))
+                            }
+                            className={cn(
+                              "min-w-[3rem] px-4 py-2.5 text-xs font-medium uppercase tracking-wider border transition-colors",
+                              isSelected
+                                ? "border-foreground bg-foreground text-background"
+                                : "border-border bg-background hover:border-foreground/50",
+                              !isAvailable && "opacity-50 cursor-not-allowed line-through"
+                            )}
+                            disabled={!isAvailable}
+                          >
+                            {value}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Taille unique info */}
             <div className="space-y-4 p-4 bg-muted/30 rounded-md border border-border/50">
