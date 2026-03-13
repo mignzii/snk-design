@@ -9,14 +9,14 @@ import hero5 from "@/assets/hero-5.jpg";
 const slides = [
   {
     image: lookbook1,
-    title: "BLACK FRIDAY",
+    title: "Eid Collection",
     subtitle: "Votre robe coup de cœur, à  prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.",
     showButton: true,
   },
   
   {
     image: hero5,
-    title: "BLACK FRIDAY",
+    title: "Eid Collection",
     subtitle: "Votre robe coup de cœur, à prix Black Friday. Des modèles à partir de 99 $ et jusqu'à 50 % de rabais.",
     showButton: true,
   },
