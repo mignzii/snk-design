@@ -82,7 +82,7 @@ const ComingSoon = () => {
 
         {/* CTA Instagram */}
         <a
-          href="https://instagram.com/snk.design_"
+          href="https://www.instagram.com/snk_design1"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center gap-3 bg-white text-black px-10 py-4 text-xs tracking-[0.3em] uppercase font-medium hover:bg-white/90 transition-all animate-fade-in"
@@ -94,7 +94,7 @@ const ComingSoon = () => {
         </a>
 
         <p className="text-white/30 text-xs tracking-[0.2em] mt-5 animate-fade-in">
-          @snk.design_
+          @snk_design1
         </p>
       </div>
 
