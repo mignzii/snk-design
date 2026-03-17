@@ -8,22 +8,12 @@ const slides = [lookbook1, lookbook2, lookbook3];
 
 const ComingSoon = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubmitted(true);
-    }
-  };
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-black flex items-center justify-center">
@@ -71,71 +61,41 @@ const ComingSoon = () => {
           className="text-4xl sm:text-6xl md:text-7xl font-normal tracking-[0.12em] uppercase mb-6 animate-fade-in leading-tight"
           style={{ fontFamily: "serif" }}
         >
-          Bientôt<br />
-          <span className="text-white/70 text-3xl sm:text-4xl md:text-5xl tracking-[0.2em]">disponible</span>
+          Nous revenons<br />
+          <span className="text-white/70 text-3xl sm:text-4xl md:text-5xl tracking-[0.2em]">très bientôt</span>
         </h1>
 
         {/* Decorative divider */}
         <div className="flex items-center gap-4 mb-8 animate-fade-in">
           <div className="h-px w-16 bg-white/30" />
-          <span className="text-white/40 text-xs tracking-[0.3em] uppercase">En construction</span>
+          <span className="text-white/40 text-xs tracking-[0.3em] uppercase">Site en maintenance</span>
           <div className="h-px w-16 bg-white/30" />
         </div>
 
         {/* Description */}
-        <p className="text-white/60 text-sm sm:text-base leading-relaxed tracking-wide mb-10 max-w-md animate-fade-in">
-          Notre boutique est en cours de création. Nous préparons quelque chose d'élégant pour vous. Laissez-nous votre e-mail pour être informé(e) en avant-première.
+        <p className="text-white/70 text-sm sm:text-base leading-relaxed tracking-wide mb-4 max-w-md animate-fade-in">
+          Notre site est momentanément en maintenance — mais <span className="text-white font-medium">nous, on ne s'arrête jamais.</span>
+        </p>
+        <p className="text-white/55 text-sm leading-relaxed tracking-wide mb-10 max-w-md animate-fade-in">
+          Chaque pièce SNK Design est pensée pour vous. Envie d'une création sur mesure, d'un coup de cœur ou d'un conseil stylistique ? <span className="text-white/80">Glissez-nous un message en DM sur Instagram</span> — notre équipe vous répond personnellement et prend votre commande directement.
         </p>
 
-        {/* Email form */}
-        {!submitted ? (
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row gap-3 w-full max-w-md animate-fade-in"
-          >
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Votre adresse e-mail"
-              className="flex-1 bg-white/10 border border-white/25 text-white placeholder-white/40 px-5 py-3 text-sm tracking-wide focus:outline-none focus:border-white/60 transition-colors backdrop-blur-sm"
-            />
-            <button
-              type="submit"
-              className="bg-white text-black px-8 py-3 text-xs tracking-[0.25em] uppercase font-medium hover:bg-white/90 transition-colors whitespace-nowrap"
-            >
-              Me notifier
-            </button>
-          </form>
-        ) : (
-          <div className="animate-fade-in border border-white/20 px-8 py-4 backdrop-blur-sm bg-white/5">
-            <p className="text-white/80 text-sm tracking-[0.15em] uppercase">
-              Merci — nous vous écrirons bientôt.
-            </p>
-          </div>
-        )}
+        {/* CTA Instagram */}
+        <a
+          href="https://instagram.com/snk.design_"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-3 bg-white text-black px-10 py-4 text-xs tracking-[0.3em] uppercase font-medium hover:bg-white/90 transition-all animate-fade-in"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+          </svg>
+          Commander via Instagram
+        </a>
 
-        {/* Social links */}
-        <div className="flex gap-6 mt-12 animate-fade-in">
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white/40 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
-          >
-            Instagram
-          </a>
-          <span className="text-white/20">·</span>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white/40 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
-          >
-            Facebook
-          </a>
-        </div>
+        <p className="text-white/30 text-xs tracking-[0.2em] mt-5 animate-fade-in">
+          @snk.design_
+        </p>
       </div>
 
       {/* Slide dots */}
